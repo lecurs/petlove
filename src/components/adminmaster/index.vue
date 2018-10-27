@@ -18,15 +18,15 @@
     </el-header>
     <el-container>
       <el-aside width="202px" class="menu">
-        <el-menu  class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-          background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu :default-active="path" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#545c64"
+          text-color="#fff" active-text-color="#ffd04b">
           <el-submenu index="1">
             <template slot="title">
               <i class="iconfont icon-zhanghu menuIcon"></i>
               <span class="menuText">账户管理</span>
             </template>
-            <el-menu-item index="1-1">平台账户管理</el-menu-item>
-            <el-menu-item index="1-2">商家账户管理</el-menu-item>
+            <el-menu-item index="/adminmaster/adminaccount">平台账户管理</el-menu-item>
+            <el-menu-item index="/adminmaster/userAccount">商家账户管理</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -56,7 +56,7 @@
       </el-aside>
       <el-container class="mid">
         <el-main class="content">
-          <router-view></router-view>
+         <router-view></router-view>
         </el-main>
         <el-footer class="footer" style="height:40px">Footer</el-footer>
       </el-container>
@@ -76,7 +76,12 @@
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       }
-    }
+    },
+    computed: {
+      path() {
+        return this.$router.history.current.path
+      }
+    },
   };
 </script>
 
