@@ -33,8 +33,8 @@
               <i class="iconfont icon-shenpiguanli menuIcon"></i>
               <span class="menuText">信息审核</span>
             </template>
-            <el-menu-item index="2-1">用户审核</el-menu-item>
-            <el-menu-item index="2-2">门店审核</el-menu-item>
+            <el-menu-item index="/adminmaster/userAudit">用户审核</el-menu-item>
+            <el-menu-item index="/adminmaster/storeAudit">门店审核</el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
