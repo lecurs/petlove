@@ -45,10 +45,29 @@ const actions = {
                 id: payload._id
             }
         }).then(res => {
-            console.log(res);
-            dispatch("getAdminUsers");
+       
+            dispatch("getAdminUsers",{page:this.state.adminUserPageation.curpage});
         })
 
+    },
+    addAdminUser({
+        commit,
+        dispatch
+    }, payload = {}){
+        axios({
+            method:"post",
+            url:"/xiajing/addAdminUser",
+            data:{
+                user:payload.user,
+                phone:payload.phone,
+                pwd:payload.pwd,
+                privilege:"1",
+                passed:"1"
+            }
+        }).then(res=>{
+               
+            dispatch("getAdminUsers");
+        });
     }
 }
 export default {

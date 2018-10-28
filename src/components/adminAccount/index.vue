@@ -1,5 +1,6 @@
 <template>
     <div>
+        <AddAdmin></AddAdmin>
         <el-table border :data="adminUser" style="width: 100% ;text-align:center" :row-class-name="tableRowClassName">
             <el-table-column prop="user" label="用户名" width="180" align="center">
             </el-table-column>
@@ -7,9 +8,11 @@
             </el-table-column>
             <el-table-column prop="pwd" label="密码" align="center">
             </el-table-column>
+              <el-table-column  label="状态"  :formatter="formatter" align="center">
+            </el-table-column>
             <el-table-column label="操作" align="center">
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
                     <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                 </template>
             </el-table-column>
@@ -25,6 +28,7 @@
 
 <script>
     import axios from "axios";
+    import AddAdmin from "./addAdmin/index.vue";
     import {
         createNamespacedHelpers
     } from 'vuex';
@@ -43,6 +47,15 @@
         },
         methods: {
             ...mapActions(["getAdminUsers","removeAdminUser"]),
+            formatter(row, column){
+                if(row.passed=="1"){
+                    return "正常"
+                }else if(row.passed=="0"){
+                    return "未激活"
+                }else{
+                      return "已停用"
+                }
+            },
             tableRowClassName({
                 row,
                 rowIndex
@@ -61,12 +74,13 @@
 
             },
             handleEdit(index, row) {
-                console.log(index, row);
             },
             handleDelete(index, row) {
-                console.log(index, row);
                 this.removeAdminUser({_id:row._id})
             }
+        },
+        components:{
+            AddAdmin,
         },
         created() {
             this.getAdminUsers();
