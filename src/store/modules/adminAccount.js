@@ -1,7 +1,9 @@
 import axios from "axios"
 const state = {
     adminUser: [],
-    adminUserPageation: {}
+    adminUserPageation: {},
+    updateAdminUser: {},
+    updateVisible: false
 }
 const mutations = {
     setAdminUser(state, adminuser) {
@@ -9,6 +11,12 @@ const mutations = {
     },
     setAdminUserPageation(state, adminUserPageation) {
         state.adminUserPageation = adminUserPageation;
+    },
+    setUpdateAdminUser(state, updateAdminUser) {
+        state.updateAdminUser = updateAdminUser;
+    },
+    setUpdateVisible(state, updateVisible) {
+        state.updateVisible = updateVisible;
     }
 }
 const getters = {
@@ -45,28 +53,47 @@ const actions = {
                 id: payload._id
             }
         }).then(res => {
-       
-            dispatch("getAdminUsers",{page:this.state.adminUserPageation.curpage});
+
+            dispatch("getAdminUsers", {
+                page: this.state.adminUserPageation.curpage
+            });
         })
 
     },
     addAdminUser({
         commit,
         dispatch
-    }, payload = {}){
+    }, payload = {}) {
         axios({
-            method:"post",
-            url:"/xiajing/addAdminUser",
-            data:{
-                user:payload.user,
-                phone:payload.phone,
-                pwd:payload.pwd,
-                privilege:"1",
-                passed:"1"
+            method: "post",
+            url: "/xiajing/addAdminUser",
+            data: {
+                user: payload.user,
+                phone: payload.phone,
+                pwd: payload.pwd,
+                privilege: "1",
+                passed: "1"
             }
-        }).then(res=>{
-               
+        }).then(res => {
+
             dispatch("getAdminUsers");
+        });
+    },
+    subUpdateAdminUser({
+        commit,
+        dispatch
+    }, payload = {}) {
+        let id = payload._id;
+        axios({
+            method: "put",
+            url: "/xiajing/updateAdminUser/" + id,
+            data: {
+                "phone": payload.phone,
+                "user": payload.user,
+                "pwd": payload.pwd,
+                "passed": payload.passed,
+                "privilege": payload.privilege
+            }
         });
     }
 }

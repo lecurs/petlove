@@ -1,6 +1,7 @@
 <template>
     <div>
         <AddAdmin></AddAdmin>
+        <UpdateAdmin></UpdateAdmin>
         <el-table border :data="adminUser" style="width: 100% ;text-align:center" :row-class-name="tableRowClassName">
             <el-table-column prop="user" label="用户名" width="180" align="center">
             </el-table-column>
@@ -29,12 +30,14 @@
 <script>
     import axios from "axios";
     import AddAdmin from "./addAdmin/index.vue";
+    import UpdateAdmin from "./updateAdmin.vue";
     import {
         createNamespacedHelpers
     } from 'vuex';
     const {
         mapState,
-        mapActions
+        mapActions,
+        mapMutations
     } = createNamespacedHelpers('AdminAccount')
     export default {
         data() {
@@ -43,10 +46,11 @@
             }
         },
         computed: {
-            ...mapState(["adminUser", "adminUserPageation"])
+            ...mapState(["adminUser", "adminUserPageation","updateVisible"])
         },
         methods: {
             ...mapActions(["getAdminUsers","removeAdminUser"]),
+            ...mapMutations(['setUpdateVisible','setUpdateAdminUser']),
             formatter(row, column){
                 if(row.passed=="1"){
                     return "正常"
@@ -73,14 +77,19 @@
                 })
 
             },
-            handleEdit(index, row) {
+            handleEdit(index, row) {            
+              this.setUpdateVisible(true);
+              console.log('====================================');
+              console.log(this.updateVisible);
+              this.setUpdateAdminUser(row);
+              console.log('====================================');
             },
             handleDelete(index, row) {
                 this.removeAdminUser({_id:row._id})
             }
         },
         components:{
-            AddAdmin,
+            AddAdmin,UpdateAdmin
         },
         created() {
             this.getAdminUsers();
