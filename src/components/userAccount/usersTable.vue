@@ -26,7 +26,7 @@
         mapState,
         mapActions,
         mapMutations
-    } = createNamespacedHelpers('UsersAccount')
+    } = createNamespacedHelpers('UsersAccount');
     export default {
         data() {
             return {
@@ -42,7 +42,6 @@
                 row,
                 rowIndex
             }) {
-                console.log(row);
                 if (row.passed == 0) {
                     return {
                         "background-color": "#f0f9eb"
@@ -58,8 +57,8 @@
                 if (row.passed == "1") {
                     return "正常"
                 } else if (row.passed == "0") {
-                    return "未激活"
-                } else {
+                    return "待审核"
+                } else if(row.passed == "-1"){
                     return "已停用"
                 }
             },

@@ -21,11 +21,12 @@ const actions = {
     }, payload = {}) {
         axios({
             method: "get",
-            url: "/xiajing/users",
+            url: "/xiajing/usersAccount",
             params: {
-                page: payload.page,
-                rows: payload.rows,
-                privilege: 0
+                page: payload.page||1,
+                rows: payload.rows||5,
+                privilege: 0,
+                passed:payload.passed||"",
             }
         }).then(res => {
             console.log('====================================');
