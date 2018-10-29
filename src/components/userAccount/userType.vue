@@ -1,6 +1,6 @@
 <template>
     <div style="margin-bottom: 20px;text-align:left">
-        <label for="">用户类别：</label>
+        <label for="">分类查看：</label>
         <el-radio-group v-model="passed" size="small" @change="changeType">
              <el-radio-button label="">全部</el-radio-button>
             <el-radio-button label="1">正常</el-radio-button>

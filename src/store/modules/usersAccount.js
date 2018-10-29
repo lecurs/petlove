@@ -29,12 +29,32 @@ const actions = {
                 passed:payload.passed||"",
             }
         }).then(res => {
-            console.log('====================================');
-            console.log(res.data);
-            console.log('====================================');
             commit('setUsers',res.data.rows);
             commit('setUsersPagenation',res.data);
         });
+    },
+    updateUser({
+        commit,
+        dispatch
+    }, payload = {}){
+        console.log('====================================');
+        console.log(payload.row);
+        console.log('====================================');
+        axios({
+            method:'put',
+            url:"/xiajing/updateUser/"+payload.row._id,
+            data:{
+                user : payload.row.user,
+                phone : payload.row.phone,
+                pwd : payload.row.pwd,
+                privilege : payload.row.privilege,
+                passed : payload.row.passed
+            }
+        }).then(res=>{
+            console.log('====================================');
+            console.log(res);
+            console.log('====================================');
+        })
     }
 
 }

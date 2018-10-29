@@ -12,8 +12,11 @@
             </el-table-column>
             <el-table-column label="操作" align="center">
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+                    <el-button v-if='scope.row.passed==-1' size="mini" type="success" @click="actionChange(scope.$index, scope.row)">启用</el-button>
+                    <el-button v-if='scope.row.passed==1' size="mini" type="danger" @click="actionChange(scope.$index, scope.row)">禁用</el-button>
+                    <el-button v-if='scope.row.passed==0' size="mini" type="info" @click="actionChange(scope.$index, scope.row)">审核</el-button>
                 </template>
+
             </el-table-column>
         </el-table>
     </div>
@@ -30,14 +33,16 @@
     export default {
         data() {
             return {
-
+                active: 'true',
+                radio: ''
             }
         },
         computed: {
             ...mapState(['users']),
         },
         methods: {
-            ...mapActions(['getUsers']),
+            ...mapActions(['getUsers', 'updateUser']),
+
             rowClass({
                 row,
                 rowIndex
@@ -46,20 +51,20 @@
                     return {
                         "background-color": "#f0f9eb"
                     }
-                }else if(row.passed == -1){
-                     return {
+                } else if (row.passed == -1) {
+                    return {
                         "background-color": "oldlace"
                     }
                 }
             },
-            
+
             formatter(row, column) {
                 if (row.passed == "1") {
                     return "正常"
                 } else if (row.passed == "0") {
                     return "待审核"
-                } else if(row.passed == "-1"){
-                    return "已停用"
+                } else if (row.passed == "-1") {
+                    return "已禁用"
                 }
             },
             toggleSelection(rows) {
@@ -75,7 +80,21 @@
                 this.multipleSelection = val;
             },
             handleEdit(index, row) {},
+            actionChange(index, row) {
+                console.log(this.radio);
+                if (row.passed == '0') {
+                    //跳转审核
 
+                } else if (row.passed == '-1') {
+                    row.passed = '1'
+                } else if (row.passed == '1') {
+                    row.passed = '-1'
+                }
+                console.log("change", row);
+                this.updateUser({
+                    row
+                })
+            },
         },
         created() {
             this.getUsers();
