@@ -33,7 +33,8 @@ const actions = {
             params: {
                 privilege: 1,
                 page: payload.page || 1,
-                rows: payload.rows || 5
+                rows: payload.rows || 5,
+                user:payload.user
             }
         }).then(res => {
             console.log(res.data);
@@ -95,7 +96,26 @@ const actions = {
                 "privilege": payload.privilege
             }
         });
-    }
+    },
+    // serchAdmin ({
+    //     commit,
+    //     dispatch
+    // }, payload = {}){
+    //     dispatch('getAdminUsers',{ user:payload.user})
+    //     axios({
+    //         method:"get",
+    //         url:"/xiajing/users",
+    //         params:{
+    //             user:payload.user
+    //         }
+    //     }).then(res=>{
+    //         console.log('====================================');
+    //         console.log(res.data);
+    //         console.log('====================================');
+
+    //         dispatch()
+    //     })
+    // }
 }
 export default {
     namespaced: true,

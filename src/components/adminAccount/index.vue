@@ -1,6 +1,9 @@
 <template>
     <div>
-        <AddAdmin></AddAdmin>
+        <div class="toolbar"> 
+            <AddAdmin></AddAdmin>
+            <SearchAdmin></SearchAdmin>
+        </div>
         <UpdateAdmin></UpdateAdmin>
         <el-table border :data="adminUser" style="width: 100% ;text-align:center" :row-class-name="tableRowClassName">
             <el-table-column prop="user" label="用户名" width="180" align="center">
@@ -9,7 +12,7 @@
             </el-table-column>
             <el-table-column prop="pwd" label="密码" align="center">
             </el-table-column>
-              <el-table-column  label="状态"  :formatter="formatter" align="center">
+            <el-table-column label="状态" :formatter="formatter" align="center">
             </el-table-column>
             <el-table-column label="操作" align="center">
                 <template slot-scope="scope">
@@ -31,6 +34,7 @@
     import axios from "axios";
     import AddAdmin from "./addAdmin/index.vue";
     import UpdateAdmin from "./updateAdmin.vue";
+    import SearchAdmin from "./serchAdmin.vue";
     import {
         createNamespacedHelpers
     } from 'vuex';
@@ -46,18 +50,18 @@
             }
         },
         computed: {
-            ...mapState(["adminUser", "adminUserPageation","updateVisible"])
+            ...mapState(["adminUser", "adminUserPageation", "updateVisible"])
         },
         methods: {
-            ...mapActions(["getAdminUsers","removeAdminUser"]),
-            ...mapMutations(['setUpdateVisible','setUpdateAdminUser']),
-            formatter(row, column){
-                if(row.passed=="1"){
+            ...mapActions(["getAdminUsers", "removeAdminUser"]),
+            ...mapMutations(['setUpdateVisible', 'setUpdateAdminUser']),
+            formatter(row, column) {
+                if (row.passed == "1") {
                     return "正常"
-                }else if(row.passed=="0"){
+                } else if (row.passed == "0") {
                     return "未激活"
-                }else{
-                      return "已停用"
+                } else {
+                    return "已停用"
                 }
             },
             tableRowClassName({
@@ -77,19 +81,23 @@
                 })
 
             },
-            handleEdit(index, row) {            
-              this.setUpdateVisible(true);
-              console.log('====================================');
-              console.log(this.updateVisible);
-              this.setUpdateAdminUser(row);
-              console.log('====================================');
+            handleEdit(index, row) {
+                this.setUpdateVisible(true);
+                console.log('====================================');
+                console.log(this.updateVisible);
+                this.setUpdateAdminUser(row);
+                console.log('====================================');
             },
             handleDelete(index, row) {
-                this.removeAdminUser({_id:row._id})
+                this.removeAdminUser({
+                    _id: row._id
+                })
             }
         },
-        components:{
-            AddAdmin,UpdateAdmin
+        components: {
+            AddAdmin,
+            UpdateAdmin,
+            SearchAdmin
         },
         created() {
             this.getAdminUsers();
@@ -111,5 +119,12 @@
         align-items: center;
         justify-content: flex-end;
         margin-top: 10px;
+    }
+    .toolbar{
+        width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
     }
 </style>
