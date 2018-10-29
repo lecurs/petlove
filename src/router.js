@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from "./components/login/index.vue"
+// import Login from "./components/login/index.vue"
+import SellerManage from "./components/sellerManage/index.vue"
 
 Vue.use(Router)
 
@@ -10,8 +11,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: Login
+      name: 'sellerManage',
+      component: SellerManage
+    }, 
+    {
+      path: '/sellerManage',
+      name: 'sellerManage',
+      component: SellerManage
     }, 
   ]
 })
