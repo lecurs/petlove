@@ -1,13 +1,17 @@
 <template>
-    <div>商家用户管理</div>
+    <UsersTable></UsersTable>
 </template>
 
 <script>
+    import UsersTable from "./usersTable";
     export default {
         data() {
             return {
 
             }
+        },
+        components: {
+            UsersTable
         }
     }
 </script>
