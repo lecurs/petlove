@@ -14,6 +14,11 @@
     <el-table-column prop="staffLevel" label="员工星等" ></el-table-column>
     <el-table-column prop="basePrice" label="单价" ></el-table-column>
     <el-table-column prop="weight" label="规格" ></el-table-column>
+    <el-table-column label="操作">
+      <template slot-scope="scope">
+        <el-button size="mini" type="primary" icon="el-icon-edit">修改</el-button>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
@@ -24,24 +29,22 @@ export default {
     return {};
   },
   created() {
-      this.getServicesById(this.storeId)
+    this.getServicesOfStore(this.storeId);
   },
   methods: {
-      toAddServices(){
-
-      },
-      ...mapActions(["getServicesById"])
+    toAddServices() {},
+    ...mapActions(["getServicesOfStore"])
   },
   computed: {
-    ...mapState(["servicesOfStore","storeId"])
+    ...mapState(["servicesOfStore", "storeId"])
   },
   components: {}
 };
 </script>
 
 <style scoped>
-.addServices{
-    cursor: pointer;
-    padding-top: 20px;
+.addServices {
+  cursor: pointer;
+  padding-top: 20px;
 }
 </style>

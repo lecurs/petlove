@@ -10,7 +10,6 @@
     </el-table-column>
     <el-table-column prop="name" label="品名" ></el-table-column>
     <el-table-column prop="type" label="种类" ></el-table-column>
-    <el-table-column prop="material" label="材质" ></el-table-column>
     <el-table-column prop="weight" label="规格" ></el-table-column>
     <el-table-column prop="area" label="产地" ></el-table-column>
     <el-table-column prop="productDate" label="生产日期" ></el-table-column>
@@ -29,14 +28,16 @@
 import { mapState, mapActions } from "vuex";
 export default {
   data: function() {
-    return {};
+    return {
+    };
   },
   created() {
-    this.getGoodsById(this.storeId);
+    this.getGoodsOfStore(this.storeId);
   },
   methods: {
-    toAddGoods() {},
-    ...mapActions(["getGoodsById"])
+    toAddGoods() {
+    },
+    ...mapActions(["getGoodsOfStore"])
   },
   computed: {
     ...mapState(["goodsOfStore", "storeId"])

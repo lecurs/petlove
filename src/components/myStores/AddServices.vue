@@ -1,11 +1,11 @@
 <template>
     <div>
         <el-button class="addBtn" type="primaty" icon="el-icon-circle-plus-outline" @click="dialogFormVisible = true">上新</el-button>
-        <el-dialog title="商品上新" :visible.sync="dialogFormVisible" width="25%" class="addDialog">
+        <el-dialog title="服务上线" :visible.sync="dialogFormVisible" width="25%" class="addDialog">
             <el-form :inline="true" :model="formInline" class="demo-form-inline">
-                <el-form-item label="选择商品">
-                    <el-select v-model="formInline.name" placeholder="选择商品">
-                        <el-option :key="good._id" v-for="good in myGoods" :good="good" :label="good.name" :value="good._id"></el-option>
+                <el-form-item label="选择服务">
+                    <el-select v-model="formInline.name" placeholder="选择服务">
+                        <el-option :key="service._id" v-for="service in myServices" :service="service" :label="service.name" :value="service._id"></el-option>
                     </el-select>
                 </el-form-item>
             </el-form>
@@ -19,7 +19,7 @@
 
 <script>
 import axios from "axios";
-import { mapActions, mapState, mapMutations } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   data: function() {
     return {
@@ -31,23 +31,23 @@ export default {
     };
   },
   created() {
-    this.getMyGoods(this.ownerId);
+    this.getMyServices(this.ownerId);
   },
   methods: {
     add: function(id) {
       this.dialogFormVisible = false;
       axios({
         method: "put",
-        url: "/xiongwei/addGoods/" + this.storeId,
+        url: "/xiongwei/addServices/" + this.storeId,
         data: { id }
       }).then(() => {
-        this.getMyGoods();
+        this.getMyServices();
       });
     },
-    ...mapActions(["getMyGoods"])
+    ...mapActions(["getMyServices"])
   },
   computed: {
-    ...mapState(["myGoods", "ownerId", "storeId"])
+    ...mapState(["myServices", "ownerId", "storeId"])
   },
   components: {}
 };

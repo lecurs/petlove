@@ -11,6 +11,10 @@
              </el-tab-pane>
             <el-tab-pane>
                 <span slot="label"><i class="el-icon-service"></i>服务列表</span>
+                 <div>
+                    <AddServices/>
+                    <RemoveServices/>
+                </div>
                 <ServicesTable/>
             </el-tab-pane>
             <el-tab-pane>
@@ -26,6 +30,8 @@ import GoodsTable from "./GoodsTable.vue";
 import AddGoods from "./AddGoods.vue";
 import RemoveGoods from "./RemoveGoods.vue";
 import ServicesTable from "./ServicesTable.vue";
+import AddServices from "./AddServices.vue";
+import RemoveServices from "./RemoveServices.vue";
 import { mapState } from "vuex";
 export default {
   data: function() {
@@ -35,7 +41,7 @@ export default {
   computed: {
     ...mapState(["storeId"])
   },
-  components: {GoodsTable,ServicesTable,AddGoods,RemoveGoods}
+  components: {GoodsTable,ServicesTable,AddGoods,RemoveGoods,AddServices,RemoveServices}
 };
 </script>
 

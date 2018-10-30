@@ -14,7 +14,8 @@ export default new Vuex.Store({
     ownerId:'',
     goodsOfStore:[],
     servicesOfStore:[],
-    myGoods:[]
+    myGoods:[],
+    myServices:[]
   },
   mutations: {
     showStores(state, stores) {
@@ -29,14 +30,17 @@ export default new Vuex.Store({
     setOwnerId(state,ownerId){
       state.ownerId=ownerId;
     },
-    getGoodsById(state,goodsOfStore){
+    getGoodsOfStore(state,goodsOfStore){
       state.goodsOfStore=goodsOfStore;
     },
-    getServicesById(state,servicesOfStore){
+    getServicesOfStore(state,servicesOfStore){
       state.servicesOfStore=servicesOfStore;
     },
     getMyGoods(state,myGoods){
       state.myGoods=myGoods;
+    },
+    getMyServices(state,myServices){
+      state.myServices=myServices;
     }
   },
   actions: {
@@ -59,28 +63,40 @@ export default new Vuex.Store({
         commit('getStoreById', response.data[0])
       });
     },
-    getGoodsById({commit},id){
+    // 获取每个门店的商品
+    getGoodsOfStore({commit},id){
       axios({
         method:'get',
         url:'/xiongwei/goodsOfStore/'+id
       }).then((response)=>{
-        commit('getGoodsById',response.data)
+        commit('getGoodsOfStore',response.data);
       });
     },
-    getServicesById({commit},id){
+    // 获取每个门店的服务
+    getServicesOfStore({commit},id){
       axios({
         method:'get',
         url:'/xiongwei/servicesOfStore/'+id
       }).then((response)=>{
-        commit('getServicesById',response.data)
+        commit('getServicesOfStore',response.data)
       });
     },
+    // 获取店主所拥有商品
     getMyGoods({commit},id){
       axios({
         method:'get',
         url:'/xiongwei/getMyGoods/'+id
       }).then((response)=>{
         commit('getMyGoods',response.data)
+      });
+    },
+    // 获取店主所拥有服务
+    getMyServices({commit},id){
+      axios({
+        method:'get',
+        url:'/xiongwei/getMyServices/'+id
+      }).then((response)=>{
+        commit('getMyServices',response.data)
       });
     }
   }
