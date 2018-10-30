@@ -53,18 +53,19 @@
 </template>
 
 <script>
-// import MyStores from "../myStores";
 import ManageCenter from "../manageCenter";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions,mapMutations} from "vuex";
 
 export default {
   data: function() {
     return {};
   },
   created: function() {
+    this.setOwnerId('5bd2df1626178522cd53fe9c');
     this.showStores({ id: "5bd2df1626178522cd53fe9c" });
   },
   methods: {
+    ...mapMutations(["setOwnerId"]),
     ...mapActions(["showStores"])
   },
   computed: {
@@ -74,7 +75,6 @@ export default {
     ...mapState(["stores"])
   },
   components: {
-    // MyStores,
     ManageCenter
   }
 };

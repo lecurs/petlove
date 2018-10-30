@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { stat } from 'fs';
 
 Vue.use(Vuex)
 
@@ -10,8 +11,10 @@ export default new Vuex.Store({
     stores: [],
     store: {},
     storeId:'',
-    myGoods:[],
-    myServices:[]
+    ownerId:'',
+    goodsOfStore:[],
+    servicesOfStore:[],
+    myGoods:[]
   },
   mutations: {
     showStores(state, stores) {
@@ -23,11 +26,17 @@ export default new Vuex.Store({
     setStoreId(state,storeId){
       state.storeId=storeId;
     },
-    getGoodsById(state,myGoods){
-      state.myGoods=myGoods;
+    setOwnerId(state,ownerId){
+      state.ownerId=ownerId;
     },
-    getServicesById(state,myServices){
-      state.myServices=myServices;
+    getGoodsById(state,goodsOfStore){
+      state.goodsOfStore=goodsOfStore;
+    },
+    getServicesById(state,servicesOfStore){
+      state.servicesOfStore=servicesOfStore;
+    },
+    getMyGoods(state,myGoods){
+      state.myGoods=myGoods;
     }
   },
   actions: {
@@ -53,7 +62,7 @@ export default new Vuex.Store({
     getGoodsById({commit},id){
       axios({
         method:'get',
-        url:'/xiongwei/myGoods/'+id
+        url:'/xiongwei/goodsOfStore/'+id
       }).then((response)=>{
         commit('getGoodsById',response.data)
       });
@@ -61,9 +70,17 @@ export default new Vuex.Store({
     getServicesById({commit},id){
       axios({
         method:'get',
-        url:'/xiongwei/myServices/'+id
+        url:'/xiongwei/servicesOfStore/'+id
       }).then((response)=>{
         commit('getServicesById',response.data)
+      });
+    },
+    getMyGoods({commit},id){
+      axios({
+        method:'get',
+        url:'/xiongwei/getMyGoods/'+id
+      }).then((response)=>{
+        commit('getMyGoods',response.data)
       });
     }
   }

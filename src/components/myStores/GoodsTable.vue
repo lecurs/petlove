@@ -1,5 +1,5 @@
 <template>
- <el-table ref="multipleTable" :data="myGoods" stripe style="width: 100%">
+ <el-table ref="multipleTable" :data="goodsOfStore" stripe style="width: 100%">
     <template slot="empty">
 	    <div class="addGoods" @click="toAddGoods">
             <img src="../../assets/add.png" alt="">
@@ -17,6 +17,11 @@
     <el-table-column prop="longLife" label="保质期" ></el-table-column>
     <el-table-column prop="price" label="单价"></el-table-column>
     <el-table-column prop="amount" label="货量"></el-table-column>
+    <el-table-column label="操作">
+      <template slot-scope="scope">
+        <el-button size="mini" type="primary" icon="el-icon-edit">修改</el-button>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
@@ -27,24 +32,22 @@ export default {
     return {};
   },
   created() {
-      this.getGoodsById(this.storeId)
+    this.getGoodsById(this.storeId);
   },
   methods: {
-      toAddGoods(){
-
-      },
-      ...mapActions(["getGoodsById"])
+    toAddGoods() {},
+    ...mapActions(["getGoodsById"])
   },
   computed: {
-    ...mapState(["myGoods","storeId"])
+    ...mapState(["goodsOfStore", "storeId"])
   },
   components: {}
 };
 </script>
 
 <style scoped>
-.addGoods{
-    cursor: pointer;
-    padding-top: 20px;
+.addGoods {
+  cursor: pointer;
+  padding-top: 20px;
 }
 </style>

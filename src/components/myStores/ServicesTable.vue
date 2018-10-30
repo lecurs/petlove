@@ -1,5 +1,5 @@
 <template>
- <el-table ref="multipleTable" :data="myServices" stripe style="width: 100%">
+ <el-table ref="multipleTable" :data="servicesOfStore" stripe style="width: 100%">
     <template slot="empty">
 	    <div class="addServices" @click="toAddServices">
             <img src="../../assets/add.png" alt="">
@@ -33,7 +33,7 @@ export default {
       ...mapActions(["getServicesById"])
   },
   computed: {
-    ...mapState(["myServices","storeId"])
+    ...mapState(["servicesOfStore","storeId"])
   },
   components: {}
 };

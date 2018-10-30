@@ -3,6 +3,10 @@
         <el-tabs type="border-card">
             <el-tab-pane>
                 <span slot="label"><i class="el-icon-goods"></i>商品列表</span>
+                <div>
+                    <AddGoods/>
+                    <RemoveGoods/>
+                </div>
                 <GoodsTable/>
              </el-tab-pane>
             <el-tab-pane>
@@ -19,6 +23,8 @@
 
 <script>
 import GoodsTable from "./GoodsTable.vue";
+import AddGoods from "./AddGoods.vue";
+import RemoveGoods from "./RemoveGoods.vue";
 import ServicesTable from "./ServicesTable.vue";
 import { mapState } from "vuex";
 export default {
@@ -29,7 +35,7 @@ export default {
   computed: {
     ...mapState(["storeId"])
   },
-  components: {GoodsTable,ServicesTable}
+  components: {GoodsTable,ServicesTable,AddGoods,RemoveGoods}
 };
 </script>
 
