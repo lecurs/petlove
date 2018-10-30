@@ -5,32 +5,41 @@
     <el-table-column type="expand">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
-          <el-form-item label="商店名称">
+          <el-form-item label="店铺名称：">
             <span>{{ props.row.name }}</span>
           </el-form-item>
-          <el-form-item label="营业执照号码">
+          <el-form-item label="营业执照号码：">
             <span>{{ props.row.licenseCode }}</span>
           </el-form-item>
-          <el-form-item label="营业地址">
+          <el-form-item label="营业执照图片：">
+            <span><img :src="/upload/+props.row.licenseImg" style="height:80px;width:100px;" alt=""></span>
+          </el-form-item>
+          <el-form-item label="门店头图：">
+            <span><img :src="/upload/+props.row.shopImg" style="height:80px;width:100px;" alt=""></span>
+          </el-form-item>
+          <el-form-item label="营业地址：">
             <span>{{ props.row.address }}</span>
           </el-form-item>
-          <el-form-item label="定位">
+          <el-form-item label="定位：">
             <span>{{ props.row.location }}</span>
           </el-form-item>
-          <el-form-item label="法人">
+          <el-form-item label="法人：">
             <span>{{ props.row.legalPerson }}</span>
           </el-form-item>
-          <el-form-item label="联系电话">
+          <el-form-item label="联系电话：">
             <span>{{ props.row.phone }}</span>
           </el-form-item>
-          <el-form-item label="特色">
+          <el-form-item label="特色：">
             <span>{{ props.row.special }}</span>
           </el-form-item>
-          <el-form-item label="vip等级">
+          <el-form-item label="vip等级：">
             <span>{{ props.row.vip }}</span>
           </el-form-item>
-          <el-form-item label="佣金比例">
+          <el-form-item label="佣金比例：">
             <span>{{ props.row.rate }}</span>
+          </el-form-item>
+          <el-form-item label="店员：">
+            <span>{{ props.row.staffs.name }}</span>
           </el-form-item>
           <el-form-item label="操作：">
             <span class="spanColor" @click="update(props.row._id)">修改</span>
@@ -52,6 +61,10 @@
       label="营业地址"
       prop="address">
     </el-table-column>
+     <el-table-column
+      label="法人"
+      prop="legalPerson">
+    </el-table-column>
   </el-table>
 </template>
 
@@ -66,7 +79,7 @@ export default {
   methods: {
     update(id) {
       console.log(id);
-      this.$emit("update:updateVisible",true)
+      this.$emit("update:updateVisible",true);
       this.setStore(id);
     },
     remove(id) {

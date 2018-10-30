@@ -9,9 +9,6 @@
                 <el-form-item label="营业执照号码" :label-width="formLabelWidth">
                 <el-input v-model="licenseCode"></el-input>
                 </el-form-item>
-                <!-- <el-form-item label="营业执照图片" :label-width="formLabelWidth">
-                <el-input v-model="licenseImg"></el-input>
-                </el-form-item> -->
                 <el-form-item label="营业执照图片" :label-width="formLabelWidth">
                     <el-upload
                         class="avatar-uploader"
@@ -36,9 +33,6 @@
                 <el-form-item label="联系电话" :label-width="formLabelWidth">
                 <el-input v-model="phone"></el-input>
                 </el-form-item>
-                <!-- <el-form-item label="店面头图" :label-width="formLabelWidth">
-                <el-input v-model="shopImg"></el-input>
-                </el-form-item> -->
                 <el-form-item label="店面头图" :label-width="formLabelWidth">
                     <el-upload
                         class="avatar-uploader"
@@ -60,7 +54,17 @@
                 <el-form-item label="佣金比例" :label-width="formLabelWidth">
                 <el-input v-model="rate"></el-input>
                 </el-form-item>
-            </el-form>
+                <p>店员属性</p>
+                <el-form-item label="姓名：" :label-width="formLabelWidth">
+                <el-input v-model="staffs.name"></el-input>
+                </el-form-item>
+                <el-form-item label="职级：" :label-width="formLabelWidth">
+                <el-input v-model="staffs.rank"></el-input>
+                </el-form-item>
+                <el-form-item label="电话：" :label-width="formLabelWidth">
+                <el-input v-model="staffs.phone"></el-input>
+                </el-form-item>
+            </el-form>  
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
                 <el-button @click="addStore" type="primary">确 定</el-button>
@@ -70,8 +74,8 @@
 </template>
 <script>
 import axios from "axios";
-import { createNamespacedHelpers } from 'vuex';
-const { mapState,mapActions } = createNamespacedHelpers('stores');
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("stores");
 export default {
   data() {
     return {
@@ -86,11 +90,16 @@ export default {
       special: "",
       vip: "",
       rate: "",
-      passed:"0",
+      passed: "0",
       imageUrl: "",
       licenseImg: "",
-      imageSrc:"",
-      shopImg:""
+      imageSrc: "",
+      shopImg: "",
+      staffs: {
+        name: "",
+        rank: "",
+        phone: ""
+      }
     };
   },
   methods: {
@@ -130,17 +139,63 @@ export default {
           special: this.special,
           vip: this.vip,
           rate: this.rate,
-          passed:this.passed,
+          passed: this.passed,
           licenseImg: this.licenseImg,
-          shopImg:this.shopImg
+          shopImg: this.shopImg,
+          staffs: {
+            name: this.staffs.name,
+            rank: this.staffs.rank,
+            phone: this.staffs.phone
+          }
         }
       }).then(res => {
-        // console.log(res.data, 5566);
+        // console.log(res.data._id, 5566);
+        let ownerId = "5bd2df1626178522cd53fe9c";
+        let storeId = res.data._id;
+        this.setOwners({ ownerId: ownerId, storeId: storeId });
+        let time = new Date();
+        let year = time.getFullYear();
+        let mouth = time.getMonth() + 1;
+        let day = time.getDate();
+        time = year + "-" + mouth + "-" + day;
+        // console.log(time, 123456789);
+        axios({
+          url: "/zhaoqinglong/saveApplication",
+          method: "post",
+          data: {
+            source: "store",
+            time: time,
+            content: {
+              workId: storeId,
+              type: "add",
+              message: {
+                oldMsg: {},
+                newMsg: {
+                  name: this.name,
+                  licenseCode: this.licenseCode,
+                  licenseImg: this.licenseImg,
+                  address: this.address,
+                  location: this.location,
+                  legalPerson: this.legalPerson,
+                  phone: this.phone,
+                  shopImg: this.shopImg,
+                  special: this.special,
+                  vip: this.vip,
+                  rate: this.rate
+                }
+              }
+            },
+            passed:"0",
+            handle:"0"
+          }
+        }).then(res=>{
+          console.log('suc');
+        });
         this.setStores();
         this.dialogFormVisible = false;
       });
     },
-    ...mapActions(["setStores"])
+    ...mapActions(["setStores", "setOwners"])
   },
   computed: {},
   components: {}
