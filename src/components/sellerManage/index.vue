@@ -30,7 +30,7 @@
                 <i class="iconfont pl-shop menuIcon"></i>
                 <span slot="title" class="menuText">我的门店</span>
             </template>
-            <el-menu-item :index="'/sellerManage/myStore?id='+store._id" :key="store._id" v-for="store in stores" :store="store">{{store.name}}</el-menu-item>
+            <el-menu-item :index="'/sellerManage/myStores?storeId='+store._id" :key="store._id" v-for="store in stores" :store="store">{{store.name}}</el-menu-item>
         </el-submenu>
         <el-submenu index="2">
             <template slot="title">
