@@ -49,8 +49,7 @@
               <i class="iconfont icon-kehutuijian menuIcon"></i>
               <span class="menuText">宠主管理</span>
             </template>
-            <el-menu-item index="4-1">用户审核</el-menu-item>
-            <el-menu-item index="4-2">门店审核</el-menu-item>
+            <el-menu-item index="/adminmaster/petMaster">宠主管理</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>

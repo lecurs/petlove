@@ -6,6 +6,7 @@ import AdminAccount from "./components/adminAccount";
 import UserAccount from "./components/userAccount";
 import StoreAudit from  "./components/storeAudit";
 import UserAudit from "./components/userAudit";
+import PetMaster from "./components/petMaster";
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ export default new Router({
           path: 'storeAudit',
           name: 'storeAudit',
           component: StoreAudit,
+        },
+        {
+          path: 'petMaster',
+          name: 'petMaster',
+          component: PetMaster,
         }
       ]
     }, 

@@ -25,12 +25,9 @@
             }
         },
         methods: {
-            ...mapActions(['getUsers']),
+            ...mapActions(['getUsers','getUserBytype']),
             changeType(){
-                console.log('====================================');
-                console.log(this.passed);
-                console.log('====================================');
-                this.getUsers({passed:this.passed});
+                this.getUserBytype({passed:this.passed});
             }
         }
     }
