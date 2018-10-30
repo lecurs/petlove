@@ -1,24 +1,27 @@
 <template>
     <div>
         <h2>我的门店</h2>
-        <StoreTable />
+        <StoreDetail/>
     </div>
 </template>
 
 <script>
 
-import StoreTable from "./StoreTable";
+import StoreDetail from "./StoreDetail";
 import { mapMutations, mapActions } from "vuex";
 export default {
   data: function() {
     return {};
   },
   created: function() {
-    this.showStores();
+
   },
   methods: {
+
   },
-  components: { StoreTable }
+  components: { 
+    StoreDetail
+    }
 };
 </script>
 

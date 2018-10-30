@@ -6,22 +6,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    owner:""
+    owner: "",
+    stores: []
   },
   mutations: {
-
+    showStores(state, stores) {
+      state.stores = stores;
+    }
   },
   actions: {
     showStores({ commit }, payload = {}) {
       axios({
         method: 'get',
-        url: '/xiongwei/',
+        url: '/xiongwei',
         params: {
-         owner:payload.owner
+         ownerId:payload.id
         }
       }).then((response) => {
-        commit("setStudents", response.data.rows);
-        commit('setPagination', response.data);
+        commit("showStores", response.data);
       })
     }
   }
