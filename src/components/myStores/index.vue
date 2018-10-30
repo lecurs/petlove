@@ -14,10 +14,10 @@ export default {
     return {};
   },
   created: function() {
-
+    // this.showStores({id:'5bd2df1626178522cd53fe9c'});
   },
   methods: {
-
+    // ...mapActions(["showStores"])
   },
   components: { 
     StoreDetail

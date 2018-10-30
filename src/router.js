@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import SellerManage from "./components/sellerManage/index.vue"
 import MyStores from "./components/myStores/index.vue"
 import ManageCenter from "./components/manageCenter/index.vue"
-import StoreDetail from "./components/myStores/StoreDetail.vue"
 
 Vue.use(Router)
 
@@ -24,13 +23,7 @@ export default new Router({
       children: [
         {
           path: 'myStores',
-          component: MyStores,
-          children:[
-            {
-              path:'StoreDetail',
-              component:StoreDetail
-            }
-          ]
+          component: MyStores
         },
         {
           path: 'manageCenter',

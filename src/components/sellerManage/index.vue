@@ -30,14 +30,14 @@
                 <i class="iconfont pl-shop menuIcon"></i>
                 <span slot="title" class="menuText">我的门店</span>
             </template>
-            <el-menu-item index="/sellerManage/myStore" :key="store._id" v-for="store in stores" :store="store">{{store.name}}</el-menu-item>
+            <el-menu-item :index="'/sellerManage/myStore?id='+store._id" :key="store._id" v-for="store in stores" :store="store">{{store.name}}</el-menu-item>
         </el-submenu>
         <el-submenu index="2">
             <template slot="title">
                 <i class="iconfont pl-weibiaoti-- menuIcon"></i>
                 <span slot="title" class="menuText">管理中心</span>
             </template>
-            <el-menu-item index="/adminmaster/userAudit">个人信息</el-menu-item>
+            <el-menu-item index="/sellerManage/manageCenter">个人信息</el-menu-item>
             <el-menu-item index="/adminmaster/storeAudit">门店管理</el-menu-item>
         </el-submenu>
     </el-menu>
@@ -55,13 +55,17 @@
 <script>
 // import MyStores from "../myStores";
 import ManageCenter from "../manageCenter";
-import { mapState } from 'vuex';
+import { mapState, mapActions } from "vuex";
 
 export default {
   data: function() {
     return {};
   },
+  created: function() {
+    this.showStores({ id: "5bd2df1626178522cd53fe9c" });
+  },
   methods: {
+    ...mapActions(["showStores"])
   },
   computed: {
     path() {

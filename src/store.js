@@ -7,12 +7,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     owner: "",
-    stores: []
+    stores: [],
+    store:{}
   },
   mutations: {
     showStores(state, stores) {
       state.stores = stores;
-    }
+    },
+    getStoreById(state, store) {
+      state.store = store;
+    },
   },
   actions: {
     showStores({ commit }, payload = {}) {
@@ -24,6 +28,14 @@ export default new Vuex.Store({
         }
       }).then((response) => {
         commit("showStores", response.data);
+      })
+    },
+    getStoreById({commit},id){
+      axios({
+        method:'get',
+        url:'/xiongWei/'+id
+      }).then((response)=>{
+        commit('getStoreById',response.data)
       })
     }
   }
