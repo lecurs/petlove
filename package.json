@@ -12,6 +12,7 @@
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^1.0.0",
     "element-ui": "^2.4.8",
+    "less-loader": "^4.1.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
