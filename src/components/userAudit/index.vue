@@ -6,6 +6,7 @@
         </div>
         <UserAuditTbale></UserAuditTbale>
         <auditWin></auditWin>
+        <UserAuditPage></UserAuditPage>
    </div>
 
 </template>
@@ -13,6 +14,7 @@
 <script>
 import UserAuditTbale from "./userAuditTbale";
 import auditWin from "./auditWin";
+import UserAuditPage from "./userAuditPage.vue";
  import {
         createNamespacedHelpers
     } from 'vuex';
@@ -31,7 +33,7 @@ import auditWin from "./auditWin";
             ...mapActions(['getApplications']),
         },
         components: {
-            UserAuditTbale,auditWin
+            UserAuditTbale,auditWin,UserAuditPage
         },
         created () {
             console.log(111);

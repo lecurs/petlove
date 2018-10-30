@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-table ref="singleTable" border :data="usersAuditData" highlight-current-row @current-change="handleCurrentChange"
+        <el-table ref="singleTable" border :header-cell-style="{background:'#08a2ba',color:'white'}" :data="usersAuditData" highlight-current-row @current-change="handleCurrentChange"
             style="width: 100%">
             <el-table-column type="index" width="80" label="序号" align="center">
             </el-table-column>

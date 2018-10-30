@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-table ref="multipleTable" border :data="users" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange"
+        <el-table ref="multipleTable" border :header-cell-style="{background:'#08a2ba',color:'white'}" :data="users" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange"
             :row-style="rowClass">
             <el-table-column type="selection" width="60" align="center">
             </el-table-column>
@@ -79,11 +79,11 @@
             handleSelectionChange(val) {
                 this.multipleSelection = val;
             },
-            handleEdit(index, row) {},
+
             actionChange(index, row) {
                 console.log(this.radio);
                 if (row.passed == '0') {
-                    //跳转审核
+                     this.$router.push("/adminmaster/userAudit");
 
                 } else if (row.passed == '-1') {
                     row.passed = '1'

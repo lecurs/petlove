@@ -5,7 +5,7 @@
             <SearchAdmin></SearchAdmin>
         </div>
         <UpdateAdmin></UpdateAdmin>
-        <el-table border :data="adminUser" style="width: 100% ;text-align:center" :row-class-name="tableRowClassName">
+        <el-table border :data="adminUser" :header-cell-style="{background:'#08a2ba',color:'white'}" style="width: 100% ;text-align:center" :row-class-name="tableRowClassName">
             <el-table-column prop="user" label="用户名" width="180" align="center">
             </el-table-column>
             <el-table-column prop="phone" label="电话" width="180" align="center">

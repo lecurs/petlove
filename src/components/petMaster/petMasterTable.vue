@@ -1,5 +1,5 @@
 <template>
-    <el-table :data="allPetMaster" style="width: 100%">
+    <el-table :data="allPetMaster" stripe border  :header-cell-style="{background:'#08a2ba',color:'white'}" style="width: 100%;margin-top:20px">
         <el-table-column type="expand">
             <template slot-scope="props">
                 <el-form label-position="left" inline class="demo-table-expand">
@@ -15,12 +15,16 @@
                     <el-form-item label="积分:">
                         <span>{{ props.row.integral }}</span>
                     </el-form-item>
+                    <el-form-item label="会员卡:">
+                        <p v-for="(temp,key) in props.row.clubcard" v-bind:key="key">
+                            <span v-for="(card,key) in temp" class="petSpan" v-bind:key="key">{{key}}：{{card}}</span>
+
+                        </p>
+                    </el-form-item>
                     <el-form-item label="宠物:">
-                        <p v-for="temp in props.row.pet" v-bind:key="temp">
+                        <p v-for="(temp,key) in props.row.pet" v-bind:key="key">
                             <span v-for="(pet,key) in temp" class="petSpan" v-bind:key="key">{{key}}：{{pet}}</span>
                         </p>
-
-
                     </el-form-item>
                 </el-form>
             </template>
@@ -58,6 +62,9 @@
             petformatter(row, rowIndex) {
                 console.log(row.pet);
 
+            },
+            header(){
+                return 
             }
         }
     }

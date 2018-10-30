@@ -41,8 +41,7 @@
               <i class="iconfont icon-suppliergroup menuIcon"></i>
               <span class="menuText">供应商管理</span>
             </template>
-            <el-menu-item index="3-1">用户审核</el-menu-item>
-            <el-menu-item index="3-2">门店审核</el-menu-item>
+            <el-menu-item index="/adminmaster/supplier">供应商管理</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">
@@ -148,10 +147,7 @@
     text-align: left;
   }
 
-  .mid {
-    /* height: 100%; */
-
-  }
+ 
 
   .menu {
     background-color: #283540;
