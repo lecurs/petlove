@@ -40,7 +40,7 @@ const actions = {
             commit("setUsersAuditPagenation", res.data)
         })
     },
-    updateUserPassed({
+    updateUserPassed({  //更改users信息
         commit,
         dispatch
     }, payload = {}) {
@@ -49,10 +49,11 @@ const actions = {
             url: "/xiajing/updateUserPassed/" + payload.id,
             data: {
                 passed: payload.passed,
-                ownnerid: payload.ownnerid
+                ownnerid: payload.ownnerid,
+                newMsg:payload.newMsg
             }
         }).then(res => {
-
+            dispatch('getApplications',{source:'account'});
         })
 
     },
@@ -68,7 +69,7 @@ const actions = {
                 passed: payload.passed
             }
         }).then(res => {
-            dispatch("getApplications");
+            dispatch("getApplications",{source:'account'});
         });
     },
     addOwners({

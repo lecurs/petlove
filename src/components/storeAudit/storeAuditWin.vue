@@ -2,11 +2,10 @@
     <el-dialog title="详情" :visible.sync="auditWinVisible" @update:visible="cancel" width="50%">
         <!-- //新增用户审核窗口 -->
         <div v-if="applicationContent.content.type=='add'" class="newMsg">
-            <el-tag type="success" class="sucTag">新增用户信息</el-tag>
+            <el-tag type="success" class="sucTag">新店铺信息</el-tag>
             <el-form :label-position="rightPosition" label-width="80px">
-                <div class="addInput" v-for="(value, key) in applicationContent.content.message.newMsg" v-if="key!='pwd'&&key!='passed'&&key!='privilege'"
-                    v-bind:key="key">
-                    <el-form-item :label="key">
+                <div class="addInput" v-for="(value, key) in applicationContent.content.message.newMsg" v-bind:key="key">
+                    <el-form-item :label="key" ref="keyItem">
                         <el-input :value="value" disabled></el-input>
                     </el-form-item>
                 </div>
@@ -15,18 +14,16 @@
         <!-- //修改用户信息窗口 -->
         <div v-if="applicationContent.content.type=='update'" class="updateWin">
             <el-form :label-position="rightPosition" label-width="80px">
-                <el-tag type="danger" class="sucTag">用户原信息</el-tag>
-                <div v-for="(value, key) in applicationContent.content.message.oldMsg" v-if="key!='pwd'&&key!='passed'&&key!='privilege'"
-                    v-bind:key="key">
+                <el-tag type="danger" class="sucTag">店铺原信息</el-tag>
+                <div v-for="(value, key) in applicationContent.content.message.oldMsg" v-bind:key="key">
                     <el-form-item :label="key">
                         <el-input :value="value" disabled></el-input>
                     </el-form-item>
                 </div>
             </el-form>
             <el-form :label-position="rightPosition" label-width="80px">
-                <el-tag class="sucTag">用户新信息</el-tag>
-                <div v-for="(value, key) in applicationContent.content.message.newMsg" v-if="key!='pwd'&&key!='passed'&&key!='privilege'"
-                    v-bind:key="key">
+                <el-tag class="sucTag">店铺新信息</el-tag>
+                <div v-for="(value, key) in applicationContent.content.message.newMsg" v-bind:key="key">
                     <el-form-item :label="key">
                         <el-input :value="value" disabled></el-input>
                     </el-form-item>
@@ -51,11 +48,12 @@
     import {
         createNamespacedHelpers
     } from 'vuex';
+    import _ from "lodash";
     const {
         mapState,
         mapActions,
         mapMutations
-    } = createNamespacedHelpers('UserAudit');
+    } = createNamespacedHelpers('StoreAudit');
     export default {
         data() {
             return {
@@ -68,8 +66,10 @@
         },
         methods: {
             ...mapMutations(['setauditWinVisible']),
-            ...mapActions(['updateApplication', 'updateUserPassed', 'addOwners']),
+            ...mapActions(['updateApplication', 'updateStorePassed']),
             ok() {
+
+
                 this.setauditWinVisible(false);
                 this.applicationContent.passed = this.radio;
                 this.applicationContent.handle = "1";
@@ -78,25 +78,23 @@
                     handle: "1",
                     passed: this.radio
                 }); //修改application集合状态
-                this.updateUserPassed({
+                this.updateStorePassed({
                     id: this.applicationContent.content.workId,
                     passed: this.radio
-                }); //修改user用户passed
-                if (this.applicationContent.content.type == "add" && this.radio == "1") {
-                    this.addOwners({
-                        id: this.applicationContent.content.workId
-                    });
-                } else if (this.applicationContent.content.type == "update" && this.radio == "1") {
-                    this.updateUserPassed({
+                }); //修改店铺passed
+                if (this.radio == "1" && this.applicationContent.content.type == "update") { //当类型是修改时，上传新数据
+                    console.log("xigai店铺");
+                    this.updateStorePassed({
                         id: this.applicationContent.content.workId,
-                        newMsg:this. applicationContent.content.message.newMsg
-                    })
+                        newMsg: this.applicationContent.content.message.newMsg,
+                        passed: this.radio
+                    });
                 }
             },
             cancel() {
                 this.setauditWinVisible(false);
             }
-        }
+        },
     }
 </script>
 
