@@ -14,7 +14,7 @@
             </el-table-column>
             <el-table-column property="content.workId" label="UserId" align="center">
             </el-table-column>
-            <el-table-column label="查看" align="center" width="250">
+            <el-table-column label="处理" align="center" width="250">
                 <template slot-scope="scope">
                     <el-button type="primary" size="small" plain @click="info(scope.row)">详情</el-button>
                 </template>
