@@ -8,17 +8,21 @@
 </template>
 <script>
 import StudentTable from "./StudentTable";
-// import Page from "./Page";
-// import AddStudent from "./AddStudent";
 import UpdateStudent from "./UpdateStudent";
-// import SearchStudent from "./SearchStudent";
+import {mapState,mapActions} from 'vuex';
+
 export default {
   data() {
     return {
       updateVisible: false
     };
   },
-  methods: {},
+  created() {
+    this.setStudents()
+  },
+  methods: {
+    ...mapActions(["setStudents"])
+  },
   computed: {},
   components: {
     StudentTable,

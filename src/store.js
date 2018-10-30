@@ -1,19 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     students: [],
-    student: {},
+    student:[],
     pagination: {}
   },
   mutations: {
-    setUser(state, student) {
+    setStudent(state, student) {
       state.student = student;
     },
-    setUsers(state, students) {
+    setStudents(state, students) {
       state.students = students;
     },
     setPagination(state,pagination){
@@ -21,29 +22,26 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    setUser({commit},id){
+    setStudent({commit},id){
       axios({
         url:'/liufei/'+id,
         method:'get',
       }).then((response)=>{
-        commit('setUser',response.data);
+        console.log(response.data);
+        commit('setStudent',response.data.users);
+
       });
     },
-    // setStudents({commit},payload={}){
-    //   axios({
-    //     url:'/students',
-    //     method:'get',
-    //     params:{
-    //       name:payload.name||'',
-    //       value:payload.value||'',
-    //       page:payload.page||1,
-    //       rows:payload.rows||5,
-    //     },
-    //   }).then((response)=>{
-    //     commit('setStudents',response.data.rows);
-    //     commit('setPagination',response.data);
-    //   })
-    // },
+    
+    setStudents({commit},payload={}){
+      axios({
+        url:'/liufei',
+        method:'get',
+      }).then((response)=>{
+        // console.log(response.data)
+        commit('setStudents',response.data);
+      })
+    },
     
   }
 })
