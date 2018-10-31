@@ -79,11 +79,12 @@ export default {
   methods: {
     update(id) {
       console.log(id);
-      this.$emit("update:updateVisible",true);
+      this.$emit("update:updateVisible", true);
       this.setStore(id);
+      this.setoldStore(id);
     },
     remove(id) {
-      console.log(id,2323232323);
+      console.log(id, 2323232323);
       axios({
         url: "/zhaoqinglong/" + id,
         method: "delete"
@@ -91,11 +92,11 @@ export default {
         this.setStores();
       });
     },
-    ...mapActions(["setStores","setStore"])
+    ...mapActions(["setStores", "setStore", "setoldStore"])
   },
 
   computed: {
-    ...mapState(["stores"])
+    ...mapState(["stores", "oldstores"])
   },
   components: {}
 };

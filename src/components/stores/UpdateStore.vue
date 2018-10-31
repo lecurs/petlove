@@ -140,6 +140,7 @@ export default {
         }
       }).then(response => {
         this.$emit("update:updateVisible", false);
+        console.log(this.oldstore,66666666666);
         axios({
           url: "/zhaoqinglong/saveApplication",
           method: "post",
@@ -151,15 +152,17 @@ export default {
               type: "put",
               message: {
                 oldMsg: {
-                  // name: store.name,
-                  // licenseCode: store.licenseCode,
-                  // address: store.address,
-                  // location: store.location,
-                  // legalPerson: store.legalPerson,
-                  // phone: store.phone,
-                  // special: store.special,
-                  // vip: store.vip,
-                  // rate: store.rate
+                  name: this.oldstore.name,
+                  licenseCode: this.oldstore.licenseCode,
+                  licenseImg:this.oldstore.licenseImg,
+                  address: this.oldstore.address,
+                  location: this.oldstore.location,
+                  legalPerson: this.oldstore.legalPerson,
+                  phone: this.oldstore.phone,
+                  shopImg: this.oldstore.shopImg,
+                  special: this.oldstore.special,
+                  vip: this.oldstore.vip,
+                  rate: this.oldstore.rate
                 },
                 newMsg: {
                   name: this.store.name,
@@ -186,7 +189,7 @@ export default {
     ...mapActions(["setStores", "setOwners"])
   },
   computed: {
-    ...mapState(["store"]),
+    ...mapState(["store","oldstore"]),
     imageUrl(){
       return "/upload/"+this.store.licenseImg
     },

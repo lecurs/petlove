@@ -2,7 +2,8 @@ import axios from "axios"
 
 const state = {
     stores: [],
-    store: {}
+    store: {},
+    oldstore: {},
 }
 const mutations = {
     setStores(state, stores) {
@@ -10,6 +11,9 @@ const mutations = {
     },
     setStore(state, store) {
         state.store = store;
+    },
+    setoldStore(state, oldstore) {
+        state.oldstore = oldstore;
     }
 }
 const getters = {
@@ -26,6 +30,17 @@ const actions = {
         }).then(response => {
             console.log("store", response.data);
             commit("setStore", response.data);
+        });
+    },
+    setoldStore({
+        commit
+    }, id) {
+        axios({
+            url: "/zhaoqinglong/" + id,
+            method: "get"
+        }).then(response => {
+            console.log("oldstore", response.data);
+            commit("setoldStore", response.data);
         });
     },
     setStores({
