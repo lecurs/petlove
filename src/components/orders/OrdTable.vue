@@ -28,11 +28,11 @@
             <span>{{props.row.services.workTime[1]}}</span>
           </el-form-item>
 
-          <el-form-item label="订单分类:" :key="store._id" v-if="props.row.type=='商品'" v-for="store in props.row.orders.goods">
+          <el-form-item label="订单分类:" :key="store._id" v-if="props.row.type=='商品'" v-for="store in props.row.stores.goods">
             <span>{{ props.row.type }},</span>
             <span>{{ store.type }}</span>
           </el-form-item>
-          <el-form-item label="订单分类:" :key="store._id" v-if="props.row.type=='服务'" v-for="store in props.row.orders.services">
+          <el-form-item label="订单分类:" :key="store._id" v-if="props.row.type=='服务'" v-for="store in props.row.stores.services">
             <span>{{ props.row.type }},</span>
             <span>{{ store.type }}</span>
           </el-form-item>
