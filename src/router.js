@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from "./components/login/index.vue"
+import Orders from "./components/orders"
 
 Vue.use(Router)
 
@@ -9,9 +10,9 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'login',
-      component: Login
+      path: '/orders',
+      name: 'orders',
+      component: Orders
     }, 
   ]
 })
