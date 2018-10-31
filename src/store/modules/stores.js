@@ -4,6 +4,9 @@ const state = {
     stores: [],
     store: {},
     oldstore: {},
+    session:{},
+    ownerId: '',
+    storesOfOwner:[]
 }
 const mutations = {
     setStores(state, stores) {
@@ -14,7 +17,16 @@ const mutations = {
     },
     setoldStore(state, oldstore) {
         state.oldstore = oldstore;
-    }
+    },
+    setOwnerId(state, ownerId) {
+        state.ownerId = ownerId;
+    },
+    setSession(state, session) {
+        state.session = session;
+    },
+    showStores(state, storesOfOwner) {
+        state.storesOfOwner = storesOfOwner;
+    },
 }
 const getters = {
 
@@ -73,7 +85,32 @@ const actions = {
                 }
             }
         })
-    }
+    },
+    showStores({ commit }, id) {
+        axios({
+            method: 'get',
+            url: '/xiongwei',
+            params: {
+                ownerId: id
+            }
+        }).then((response) => {
+            commit("showStores", response.data);
+        });
+    },
+    setOwnerId({commit,dispatch},id) {
+        axios({
+            method:'get',
+            url:'/xiongwei/getOwner',
+            params:{
+                userId:id
+            }
+        }).then((res)=>{
+            console.log('wang',res.data);   
+            commit('setOwnerId',res.data);
+            dispatch('showStores',res.data);
+            // console.log(this.state.XiongPlus)
+        })
+    },
 }
 export default {
     namespaced: true,

@@ -15,8 +15,9 @@ import AddStore from "./AddStore";
 import StoreTable from "./StoreTable";
 import SearchStore from "./SearchStore";
 import UpdateStore from "./UpdateStore";
+import axios from "axios";
 import { createNamespacedHelpers } from "vuex";
-const { mapActions } = createNamespacedHelpers("stores");
+const { mapState, mapActions,mapMutations } = createNamespacedHelpers("stores");
 
 export default {
   data() {
@@ -24,11 +25,29 @@ export default {
       updateVisible: false
     };
   },
+  beforeCreate() {
+    axios({
+      method: "get",
+      url: "/xiajing/getSession"
+    }).then(res => {
+      if (!res.data.user) {
+        this.$router.push("/login");
+      } else {
+        this.setOwnerId(res.data._id);
+        this.setSession(res.data);
+      }
+    });
+  },
   methods: {
-    ...mapActions(["setStores"])
+    ...mapMutations(["setSession"]),
+    ...mapActions(["setStores","setOwnerId"])
   },
   created() {
+    console.log(this.ownerId,1231212)
     this.setStores();
+  },
+  computed: {
+    ...mapState(["ownerId","session"])
   },
   components: {
     AddStore,
