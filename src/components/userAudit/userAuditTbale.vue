@@ -63,10 +63,6 @@
 
             },
             info(row, rowIndex) {
-                console.log(row);
-                console.log('====================================');
-                console.log("dakai");
-                console.log('====================================');
                 this.setauditWinVisible(true);
                 this.setApplicationContent(row);
             }

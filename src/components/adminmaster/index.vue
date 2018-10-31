@@ -8,9 +8,9 @@
       <div class="headerRight">
         <p class="eachLog">
           <i class="iconfont icon-ai-user rightIcon"></i>
-          <i class="headertext">admin</i>
+          <i class="headertext">{{session.user}}</i>
         </p>
-        <p class="eachLog">
+        <p class="eachLog" @click="logout">
           <i class="iconfont icon-tuichu1 rightIcon"></i>
           <i class="headertext">退出</i>
         </p>
@@ -70,6 +70,12 @@
 </template>
 
 <script>
+  import axios from "axios";
+  import {
+    mapActions,
+    mapMutations,
+    mapState
+  } from "vuex";
   export default {
     data() {
       return {};
@@ -80,13 +86,36 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
-      }
+      },
+      logout() {
+        axios({
+          method: 'post',
+          url: '/xiajing/removeSession',
+        }).then(res => {
+          this.$router.push("/login");
+        });
+      },
+      ...mapMutations(['setSession'])
     },
     computed: {
+      ...mapState(['session']),
       path() {
         return this.$router.history.current.path
       }
     },
+    beforeCreate() {
+      axios({
+        method: 'get',
+        url: '/xiajing/getSession',
+      }).then(res => {
+        if (!res.data.user) {
+          this.$router.push("/login");
+        } else {
+          this.setSession(res.data);
+        }
+      });
+
+    }
   };
 </script>
 
@@ -121,7 +150,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 150px;
+    width: 200px;
   }
 
   .rightIcon {

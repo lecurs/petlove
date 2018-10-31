@@ -36,6 +36,9 @@ const actions = {
                 handle: "0",
             }
         }).then(res => {
+            console.log('====================================');
+            console.log(res.data);
+            console.log('====================================');
             commit('setUsersAuditData', res.data.rows);
             commit("setUsersAuditPagenation", res.data)
         })
