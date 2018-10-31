@@ -1,4 +1,4 @@
-<template>
+g<template>
     <div>
         <el-button class="delBtn" type="primaty" icon="el-icon-delete" @click="dialogFormVisible = true">批量下线</el-button>
         <el-dialog title="服务下架" :visible.sync="dialogFormVisible" width="25%" class="delDialog">
