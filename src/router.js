@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from "./components/login/index.vue"
-import System from "./components/system/index.vue"
+// import Login from "./components/login/index.vue"
+// import System from "./components/system/index.vue"
 import Stores from "./components/stores"
 
 
