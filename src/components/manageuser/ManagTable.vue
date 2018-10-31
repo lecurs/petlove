@@ -51,9 +51,7 @@ const { mapState, mapActions } = createNamespacedHelpers("storeuser");
 import axios from "axios";
 export default {
   data() {
-    return {
-  
-    };  
+    return {};  
   },
 
   created() {
