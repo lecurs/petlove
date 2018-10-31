@@ -3,15 +3,16 @@
         <el-tabs type="border-card">
             <el-tab-pane>
                 <span slot="label"><i class="el-icon-goods"></i>商品列表</span>
-                <div>
+                <div class="btns">
                     <AddGoods/>
                     <RemoveGoods/>
                 </div>
-                <GoodsTable/>
+                <GoodsTable :updateVisible.sync="updateVisible"/>
+                <UpdateGoods :updateVisible.sync="updateVisible" />
              </el-tab-pane>
             <el-tab-pane>
                 <span slot="label"><i class="el-icon-service"></i>服务列表</span>
-                 <div>
+                 <div class="btns">
                     <AddServices/>
                     <RemoveServices/>
                 </div>
@@ -32,19 +33,35 @@ import RemoveGoods from "./RemoveGoods.vue";
 import ServicesTable from "./ServicesTable.vue";
 import AddServices from "./AddServices.vue";
 import RemoveServices from "./RemoveServices.vue";
+import UpdateGoods from "./UpdateGoods.vue";
 import { mapState } from "vuex";
 export default {
   data: function() {
-    return {};
+    return {
+      updateVisible: false
+    };
   },
   methods: {},
   computed: {
     ...mapState(["storeId"])
   },
-  components: {GoodsTable,ServicesTable,AddGoods,RemoveGoods,AddServices,RemoveServices}
+  components: {
+    GoodsTable,
+    ServicesTable,
+    AddGoods,
+    RemoveGoods,
+    AddServices,
+    RemoveServices,
+    UpdateGoods
+  }
 };
 </script>
 
 <style scoped>
+.btns {
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
+}
 </style>
 

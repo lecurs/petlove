@@ -15,7 +15,8 @@ export default new Vuex.Store({
     goodsOfStore:[],
     servicesOfStore:[],
     myGoods:[],
-    myServices:[]
+    myServices:[],
+    oneGood:{}
   },
   mutations: {
     showStores(state, stores) {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     },
     getMyServices(state,myServices){
       state.myServices=myServices;
+    },
+    setOneGood(state,oneGood){
+      state.oneGood=oneGood
     }
   },
   actions: {
@@ -97,6 +101,19 @@ export default new Vuex.Store({
         url:'/xiongwei/getMyServices/'+id
       }).then((response)=>{
         commit('getMyServices',response.data)
+      });
+    },
+    // 获取某样商品
+    setOneGood({commit},payload={}){
+      axios({
+        method:'post',
+        url:'/xiongwei/updateGoods',
+        data:{
+          storeId:payload.storeId,
+          goodId:payload.goodId
+        }
+      }).then((response)=>{
+        commit('setOneGood',response.data);
       });
     }
   }

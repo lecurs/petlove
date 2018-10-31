@@ -17,6 +17,7 @@
     <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button size="mini" type="primary" icon="el-icon-edit">修改</el-button>
+        <el-button size="mini" type="danger" icon="el-icon-delete" @click="del(scope.row._id)">下线</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -32,6 +33,15 @@ export default {
     this.getServicesOfStore(this.storeId);
   },
   methods: {
+    del(id) {
+       axios({
+         method:'put',
+         url:'/xiongwei/delServices/'+this.storeId,
+         data:{id}
+       }).then(()=>{
+         this.getServicesOfStore(this.storeId);
+       });
+    },
     toAddServices() {},
     ...mapActions(["getServicesOfStore"])
   },

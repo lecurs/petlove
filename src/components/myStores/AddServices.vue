@@ -41,10 +41,11 @@ export default {
         url: "/xiongwei/addServices/" + this.storeId,
         data: { id }
       }).then(() => {
-        this.getMyServices();
+        this.getMyServices(this.ownerId);
+        this.getServicesOfStore(this.storeId);
       });
     },
-    ...mapActions(["getMyServices"])
+    ...mapActions(["getMyServices","getServicesOfStore"])
   },
   computed: {
     ...mapState(["myServices", "ownerId", "storeId"])
