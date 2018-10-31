@@ -67,14 +67,14 @@ export default {
         this.$emit("update:updateVisible",true)
         this.setStudent(id);
     },
-    remove(id){
-        axios({
-            url:'/liufei/'+id,
-            method:'delete'
-        }).then((response)=>{
-            this.setStudents({page:this.pagination.curpage});
-        })
-    },
+    // remove(id){
+    //     axios({
+    //         url:'/liufei/'+id,
+    //         method:'delete'
+    //     }).then((response)=>{
+    //         this.setStudents({page:this.pagination.curpage});
+    //     })
+    // },
     ...mapActions(["setStudents","setStudent"])
   },
   computed:{
