@@ -59,7 +59,8 @@ export default {
           phone: this.student.phone,
           pwd: this.student.pwd,
           role: this.student.role,
-          privilege: this.student.privilege
+          privilege: this.student.privilege,
+          passed:"0"
         }
       }).then(response => {
         let id = response.data._id;

@@ -26,10 +26,7 @@ export default {
   computed: {},
   components: {
     ManagTable,
-    // Page,
-    // AddStudent,
     UpdateUsers,
-    // SearchStudent
   }
 };
 </script>

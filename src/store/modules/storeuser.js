@@ -25,7 +25,7 @@ const actions = {
       commit('setStudent', response.data.users);
     });
   },
-  setStudents({ commit }, payload = {}) {
+  setStudents({ commit,dispatch }, payload = {}) {
     axios({
       url: '/liufei',
       method: 'get',
