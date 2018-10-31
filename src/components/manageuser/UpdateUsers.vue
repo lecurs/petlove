@@ -35,7 +35,7 @@ export default {
   props: ["updateVisible"],
 
   data() {
-    console.log(this.student);
+    // console.log(this.student);
     return {
       formLabelWidth: "100px"
     };
