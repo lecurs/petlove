@@ -44,7 +44,10 @@
   </el-table>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+// import { mapState, mapActions } from "vuex";
+import { createNamespacedHelpers} from "vuex";
+const { mapState, mapActions } = createNamespacedHelpers("storeuser");
+
 import axios from "axios";
 export default {
   data() {
@@ -60,7 +63,6 @@ export default {
     // handleClick(row) {
     //   console.log(row);
     // }
-
     update(id){
         this.$emit("update:updateVisible",true)
         this.setStudent(id);
