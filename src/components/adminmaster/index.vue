@@ -18,8 +18,8 @@
     </el-header>
     <el-container>
       <el-aside width="202px" class="menu">
-        <el-menu :default-active="path" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#545c64"
-          text-color="#fff" active-text-color="#ffd04b">
+        <el-menu :default-active="path" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+          background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
           <el-submenu index="1">
             <template slot="title">
               <i class="iconfont icon-zhanghu menuIcon"></i>
@@ -38,12 +38,19 @@
           </el-submenu>
           <el-submenu index="3">
             <template slot="title">
+              <i class="iconfont icon-shangjia menuIcon"></i>
+              <span class="menuText">门店管理</span>
+            </template>
+            <el-menu-item index="/adminmaster/storemanage">门店管理</el-menu-item>
+          </el-submenu>
+          <el-submenu index="4">
+            <template slot="title">
               <i class="iconfont icon-suppliergroup menuIcon"></i>
               <span class="menuText">供应商管理</span>
             </template>
             <el-menu-item index="/adminmaster/supplier">供应商管理</el-menu-item>
           </el-submenu>
-          <el-submenu index="4">
+          <el-submenu index="5">
             <template slot="title">
               <i class="iconfont icon-kehutuijian menuIcon"></i>
               <span class="menuText">宠主管理</span>
@@ -54,7 +61,7 @@
       </el-aside>
       <el-container class="mid">
         <el-main class="content">
-         <router-view></router-view>
+          <router-view></router-view>
         </el-main>
         <el-footer class="footer" style="height:40px">Footer</el-footer>
       </el-container>
@@ -147,7 +154,7 @@
     text-align: left;
   }
 
- 
+
 
   .menu {
     background-color: #283540;

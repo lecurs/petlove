@@ -17,7 +17,7 @@
         mapState,
         mapActions,
         mapMutations
-    } = createNamespacedHelpers('UsersAccount')
+    } = createNamespacedHelpers('StoreManage')
     export default {
         data() {
             return {
@@ -25,9 +25,9 @@
             }
         },
         methods: {
-            ...mapActions(['getUsers','getUserBytype']),
+            ...mapActions(['getAllStores','getAllStoresByType']),
             changeType(){
-                this.getUserBytype({passed:this.passed});
+                this.getAllStoresByType({passed:this.passed});
             }
         }
     }

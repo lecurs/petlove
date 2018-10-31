@@ -8,6 +8,7 @@ import StoreAudit from  "./components/storeAudit";
 import UserAudit from "./components/userAudit";
 import PetMaster from "./components/petMaster";
 import Supplier from "./components/supplier";
+import  Storemanage from './components/storeManage';
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
           path: 'supplier',
           name: 'supplier',
           component: Supplier,
+        },
+         {
+          path: 'storemanage',
+          name: 'storemanage',
+          component: Storemanage,
         }
       ]
     }, 

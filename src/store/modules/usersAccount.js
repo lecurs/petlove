@@ -23,6 +23,7 @@ const actions = {
             method: "get",
             url: "/xiajing/usersAccount",
             params: {
+                user:payload.user,
                 page: payload.page || 1,
                 rows: payload.rows || 5,
                 privilege: 0,

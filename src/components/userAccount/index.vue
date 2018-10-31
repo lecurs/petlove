@@ -1,6 +1,9 @@
 <template>
     <div>
-        <UserType></UserType>
+        <div class="toolbar">
+            <UserType></UserType>
+            <UserSearch></UserSearch>
+        </div>
         <UsersTable></UsersTable>
         <div class="page">
             <el-pagination background layout="prev, pager, next" :total="usersPagenation.total" :page-size="usersPagenation.eachpage"
@@ -13,6 +16,7 @@
 <script>
     import UsersTable from "./usersTable";
     import UserType from "./userType";
+    import UserSearch from "./userSearch.vue";
     import {
         createNamespacedHelpers
     } from 'vuex';
@@ -42,14 +46,22 @@
         },
         components: {
             UsersTable,
-            UserType
+            UserType,
+            UserSearch
         }
     }
 </script>
 
 <style scoped>
-.page{
-    text-align: right;
-    margin-top: 10px;
-}
+    .page {
+        text-align: right;
+        margin-top: 10px;
+    }
+    .toolbar{
+        width: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
 </style>

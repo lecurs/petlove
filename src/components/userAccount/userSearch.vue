@@ -2,7 +2,7 @@
     <div class="outEle">
         <div class="input">
             <label for="" class="label">用户名：</label>
-            <el-input type="text" v-model="user" size="small" placeholder="请输入用户名" autocomplete="off"></el-input>
+            <el-input type="text" v-model="user" size="small"  placeholder="请输入用户名" autocomplete="off"></el-input>
         </div>
         <el-button type="primary" size="small" icon="el-icon-search" class="btn" @click="search">查询</el-button>
     </div>
@@ -16,7 +16,7 @@
         mapState,
         mapActions,
         mapMutations
-    } = createNamespacedHelpers('AdminAccount');
+    } = createNamespacedHelpers('UsersAccount');
     export default {
         data() {
             return {
@@ -24,10 +24,10 @@
             };
         },
         methods: {
-            ...mapActions(['getAdminUsers']),
+            ...mapActions(['getUsers']),
             search() {
             
-                this.getAdminUsers({user:this.user});
+                this.getUsers({user:this.user});
 
             }
         }

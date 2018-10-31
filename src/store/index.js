@@ -6,11 +6,18 @@ import UserAudit from "./modules/userAudit";
 import StoreAudit from "./modules/storeAudit";
 import PetMaster from "./modules/petMaster";
 import Supplier from "./modules/supplier";
+import StoreManage from "./modules/storeManage";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    AdminAccount,UsersAccount,UserAudit,StoreAudit,PetMaster,Supplier
+    AdminAccount,
+    UsersAccount,
+    UserAudit,
+    StoreAudit,
+    PetMaster,
+    Supplier,
+    StoreManage
   },
   state: {
 

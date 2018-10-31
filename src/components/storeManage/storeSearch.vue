@@ -2,7 +2,7 @@
     <div class="outEle">
         <div class="input">
             <label for="" class="label">用户名：</label>
-            <el-input type="text" v-model="user" size="small" placeholder="请输入用户名" autocomplete="off"></el-input>
+            <el-input type="text" v-model="name" placeholder="请输入店铺名" size="small" autocomplete="off"></el-input>
         </div>
         <el-button type="primary" size="small" icon="el-icon-search" class="btn" @click="search">查询</el-button>
     </div>
@@ -16,19 +16,18 @@
         mapState,
         mapActions,
         mapMutations
-    } = createNamespacedHelpers('AdminAccount');
+    } = createNamespacedHelpers('StoreManage');
     export default {
         data() {
             return {
-                user: ''
+                name: ''
             };
         },
         methods: {
-            ...mapActions(['getAdminUsers']),
+            ...mapActions(['getAllStores']),
             search() {
             
-                this.getAdminUsers({user:this.user});
-
+                this.getAllStores({name:this.name});
             }
         }
     }
