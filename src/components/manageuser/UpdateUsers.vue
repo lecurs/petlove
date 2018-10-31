@@ -9,7 +9,7 @@
                 <el-input v-model="student.phone"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" :label-width="formLabelWidth">
-                <el-input v-model="student.pwd" autocomplete="off"></el-input>
+                <el-input v-model="student.pwd" type="password" autocomplete="off"></el-input>
                 </el-form-item>
                   <el-form-item label="角色" :label-width="formLabelWidth">
                 <el-input v-model="student.role"></el-input>

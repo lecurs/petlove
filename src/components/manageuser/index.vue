@@ -1,14 +1,14 @@
 <template>
     <div>
         <h1>用户管理</h1>
-        <StudentTable :updateVisible.sync="updateVisible"></StudentTable>
+        <ManagTable :updateVisible.sync="updateVisible"></ManagTable>
         <!-- <Page></Page> -->
-        <UpdateStudent :updateVisible.sync="updateVisible"></UpdateStudent>
+        <UpdateUsers :updateVisible.sync="updateVisible"></UpdateUsers>
     </div>
 </template>
 <script>
-import StudentTable from "./StudentTable";
-import UpdateStudent from "./UpdateStudent";
+import ManagTable from "./ManagTable";
+import UpdateUsers from "./UpdateUsers";
 import {mapState,mapActions} from 'vuex';
 
 export default {
@@ -25,10 +25,10 @@ export default {
   },
   computed: {},
   components: {
-    StudentTable,
+    ManagTable,
     // Page,
     // AddStudent,
-    UpdateStudent,
+    UpdateUsers,
     // SearchStudent
   }
 };
