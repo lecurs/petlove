@@ -80,9 +80,21 @@
       label="描述"
       prop="content.context">
     </el-table-column>
-    <el-table-column
+    <!-- <el-table-column
       label="价格"
       prop="goods.price">
+    </el-table-column> -->
+    <el-table-column label="价格">
+      <template slot-scope="props">
+        <el-form label-position="left" inline class="demo-table-expand">
+          <el-form-item v-if="props.row.type=='商品'">
+            <span>{{props.row.goods.price }}</span>
+          </el-form-item>
+          <el-form-item v-if="props.row.type=='服务'">
+            <span>{{props.row.services.basePrice }}</span>
+          </el-form-item>
+          </el-form>
+      </template>
     </el-table-column>
     <el-table-column
       label="进度"
