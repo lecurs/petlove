@@ -8,7 +8,7 @@
        <div class="headerRight">
         <p class="eachLog">
           <i class="iconfont pl-userman2 rightIcon"></i>
-          <i class="headertext">admin</i>
+          <i class="headertext">{{session.user}}</i>
         </p>
         <p class="eachLog">
           <i class="iconfont pl-tuichu rightIcon"></i>
@@ -53,27 +53,43 @@
 </template>
 
 <script>
+import axios from "axios";
 import ManageCenter from "../manageCenter";
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers("XiongPlus");
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "XiongPlus"
+);
 
 export default {
   data: function() {
     return {};
   },
-  created: function() {
-    this.setOwnerId("5bd2df1626178522cd53fe9c");
-    this.showStores({ id: "5bd2df1626178522cd53fe9c" });
+  beforeCreate() {
+    axios({
+      method: "get",
+      url: "/xiajing/getSession"
+    }).then(res => {
+      if (!res.data.user) {
+        this.$router.push("/login");
+      } else {
+        this.setOwnerId(res.data._id);
+        this.setSession(res.data);
+      }
+    });
   },
   methods: {
-    ...mapMutations(["setOwnerId"]),
-    ...mapActions(["showStores"])
+    ...mapMutations(["setSession"]),
+    ...mapActions(["setOwnerId", "showStores"])
   },
   computed: {
     path() {
       return this.$router.history.current.path;
     },
-    ...mapState(["stores"])
+    outputStores() {
+      return JSON.stringify(this.stores);
+    },
+    ...mapState(["stores", "session", "ownerId"]),
+    road() {}
   },
   components: {
     ManageCenter

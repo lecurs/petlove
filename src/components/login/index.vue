@@ -63,7 +63,6 @@
     methods: {
       submitForm() {
         this.$refs.logForm.validate((valid) => {
-          // console.log(this)
           if (valid) {
             axios({
               method: "post",
@@ -76,15 +75,7 @@
               if (response.data.status == 1) { //平台管理登录
                 this.$router.push("/adminmaster");
               } else if (response.data.status == 0) { //店铺管理登录
-                axios({
-                  method: "post",
-                  url: "/zhangyuan/setSession",
-                  data: {
-                    phone: this.logForm.phone,
-                  }
-                }).then((response) => {
-                  alert('店铺管理登录成功');
-                })
+                this.$router.push("/sellerManage");
               } else if (response.data.status == 2) { //待审核
                 alert("账号待审核")
                 // this.$router.push("/manage");

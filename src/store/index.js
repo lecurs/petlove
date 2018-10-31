@@ -20,7 +20,7 @@ export default new Vuex.Store({
     PetMaster,
     Supplier,
     StoreManage,
-XiongPlus
+    XiongPlus
   },
   state: {
     session: {},

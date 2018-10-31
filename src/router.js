@@ -13,6 +13,7 @@ import Supplier from "./components/supplier";
 import Storemanage from './components/storeManage';
 import Login from "./components/login/index.vue"
 import Reg from './components/reg/index.vue'
+import Welcome from './components/sellerManage/Welcome.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +36,10 @@ export default new Router({
         {
           path: 'manageCenter',
           component: ManageCenter
+        },
+        {
+          path: 'welcome',
+          component: Welcome
         }
       ]
     },

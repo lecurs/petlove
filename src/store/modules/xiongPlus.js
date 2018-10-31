@@ -9,7 +9,8 @@ const state = {
     servicesOfStore: [],
     myGoods: [],
     myServices: [],
-    oneGood: {}
+    oneGood: {},
+    session:{}
 };
 const mutations = {
     showStores(state, stores) {
@@ -38,19 +39,35 @@ const mutations = {
     },
     setOneGood(state, oneGood) {
         state.oneGood = oneGood
+    },
+    setSession(state, session) {
+        state.session = session;
     }
 };
 const actions = {
-    showStores({ commit }, payload = {}) {
+    showStores({ commit }, id) {
         axios({
             method: 'get',
             url: '/xiongwei',
             params: {
-                ownerId: payload.id
+                ownerId: id
             }
         }).then((response) => {
             commit("showStores", response.data);
         });
+    },
+    setOwnerId({commit,dispatch},id) {
+        axios({
+            method:'get',
+            url:'/xiongwei/getOwner',
+            params:{
+                userId:id
+            }
+        }).then((res)=>{
+            commit('setOwnerId',res.data);
+            dispatch('showStores',res.data);
+            console.log(this.state.XiongPlus)
+        })
     },
     getStoreById({ commit }, id) {
         axios({
