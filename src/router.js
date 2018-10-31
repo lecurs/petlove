@@ -13,25 +13,25 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'system',
-      component: System
+      name: 'stores',
+      component: Stores
     }, 
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    }, 
-    {
-      path: '/system',
-      name: 'system',
-      component: System,
-      children:[
-        {
-          path: 'stores',
-          name: 'stores',
-          component: Stores
-        }
-      ] 
-    }
+    // {
+    //   path: '/login',
+    //   name: 'login',
+    //   component: Login
+    // }, 
+    // {
+    //   path: '/system',
+    //   name: 'system',
+    //   component: System,
+    //   children:[
+    //     {
+    //       path: 'stores',
+    //       name: 'stores',
+    //       component: Stores
+    //     }
+    //   ] 
+    // }
   ]
 })
