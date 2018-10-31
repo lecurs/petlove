@@ -22,7 +22,8 @@
 
 <script>
 import StoreItem from "./StoreItem.vue";
-import { mapState } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("XiongPlus");
 export default {
   data: function() {
     return {};

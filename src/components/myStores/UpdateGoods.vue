@@ -20,7 +20,8 @@
 
 <script>
 import axios from "axios";
-import { mapState, mapActions } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("XiongPlus");
 export default {
   props: ["updateVisible"],
   data: function() {

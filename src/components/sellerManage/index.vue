@@ -54,14 +54,15 @@
 
 <script>
 import ManageCenter from "../manageCenter";
-import { mapState, mapActions,mapMutations} from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("XiongPlus");
 
 export default {
   data: function() {
     return {};
   },
   created: function() {
-    this.setOwnerId('5bd2df1626178522cd53fe9c');
+    this.setOwnerId("5bd2df1626178522cd53fe9c");
     this.showStores({ id: "5bd2df1626178522cd53fe9c" });
   },
   methods: {

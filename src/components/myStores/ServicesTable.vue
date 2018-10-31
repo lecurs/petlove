@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("XiongPlus");
 export default {
   data: function() {
     return {};

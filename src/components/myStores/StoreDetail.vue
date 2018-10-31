@@ -34,7 +34,8 @@ import ServicesTable from "./ServicesTable.vue";
 import AddServices from "./AddServices.vue";
 import RemoveServices from "./RemoveServices.vue";
 import UpdateGoods from "./UpdateGoods.vue";
-import { mapState } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("XiongPlus");
 export default {
   data: function() {
     return {

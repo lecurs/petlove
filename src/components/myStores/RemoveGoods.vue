@@ -16,7 +16,8 @@
 
 <script>
 import axios from "axios";
-import { mapActions, mapState, mapMutations } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers("XiongPlus");
 export default {
   data: function() {
     return {
