@@ -1,5 +1,6 @@
 <template>
     <div>
+      <h1>我的门店</h1>
         <div class="addStore">
           <AddStore></AddStore>
           <SearchStore></SearchStore>
