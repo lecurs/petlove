@@ -1,6 +1,6 @@
 <template>
   <el-table
-    :data="stores"
+    :data="storesOfOwner"
     style="width: 100%">
     <el-table-column type="expand">
       <template slot-scope="props">
@@ -89,14 +89,14 @@ export default {
         url: "/zhaoqinglong/" + id,
         method: "delete"
       }).then(response => {
-        this.setStores();
+        this.setStoresOfOwner();
       });
     },
-    ...mapActions(["setStores", "setStore", "setoldStore"])
+    ...mapActions(["setStores", "setStore", "setoldStore","setStoresOfOwner"])
   },
 
   computed: {
-    ...mapState(["stores", "oldstores"])
+    ...mapState(["stores", "oldstores","ownerId","storesOfOwner"])
   },
   components: {}
 };

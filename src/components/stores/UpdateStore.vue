@@ -90,13 +90,9 @@ export default {
   },
   methods: {
     handleAvatarSuccess(res, file) {
-      // console.log(file,5555555555);
-      // this.imageUrl = URL.createObjectURL(file.raw);
       this.store.licenseImg = file.response;
     },
     handleAvatarSuccessShopImg(res, file) {
-      // console.log(file,5555555555);
-      // this.imageSrc = URL.createObjectURL(file.raw);
       this.store.shopImg = file.response;
     },
     beforeAvatarUpload(file) {
@@ -112,7 +108,8 @@ export default {
       return isJPG && isLt2M;
     },
     updateConfirm(id) {
-      let ownerId = "5bd2df1626178522cd53fe9c";
+      console.log(this.ownerId,556565);
+      let ownerId = this.ownerId;
       let storeId = id;
       this.setOwners({ ownerId: ownerId, storeId: storeId });
       let time = new Date();
@@ -120,27 +117,26 @@ export default {
       let mouth = time.getMonth() + 1;
       let day = time.getDate();
       time = year + "-" + mouth + "-" + day;
-      console.log(this.store.licenseImg,7788);
-      axios({
-        url: "/zhaoqinglong/" + id,
-        method: "put",
-        data: {
-          name: this.store.name,
-          licenseCode: this.store.licenseCode,
-          address: this.store.address,
-          location: this.store.location,
-          legalPerson: this.store.legalPerson,
-          phone: this.store.phone,
-          special: this.store.special,
-          vip: this.store.vip,
-          rate: this.store.rate,
-          licenseImg:this.store.licenseImg,
-          shopImg:this.store.shopImg,
-          passed:"0"
-        }
-      }).then(response => {
+      // axios({
+      //   url: "/zhaoqinglong/" + id,
+      //   method: "put",
+      //   data: {
+      //     name: this.store.name,
+      //     licenseCode: this.store.licenseCode,
+      //     address: this.store.address,
+      //     location: this.store.location,
+      //     legalPerson: this.store.legalPerson,
+      //     phone: this.store.phone,
+      //     special: this.store.special,
+      //     vip: this.store.vip,
+      //     rate: this.store.rate,
+      //     licenseImg:this.store.licenseImg,
+      //     shopImg:this.store.shopImg,
+      //     passed:"0"
+      //   }
+      // }).then(response => {
         this.$emit("update:updateVisible", false);
-        console.log(this.oldstore,66666666666);
+        // console.log(this.oldstore,66666666666);
         axios({
           url: "/zhaoqinglong/saveApplication",
           method: "post",
@@ -149,7 +145,7 @@ export default {
             time: time,
             content: {
               workId: storeId,
-              type: "put",
+              type: "update",
               message: {
                 oldMsg: {
                   name: this.oldstore.name,
@@ -183,13 +179,13 @@ export default {
             handle: "0"
           }
         });
-        this.setStores();
-      });
+        this.setStoresOfOwner(this.ownerId);
+      // });
     },
-    ...mapActions(["setStores", "setOwners"])
+    ...mapActions(["setStores", "setOwners","setStoresOfOwner"])
   },
   computed: {
-    ...mapState(["store","oldstore"]),
+    ...mapState(["store","oldstore","ownerId"]),
     imageUrl(){
       return "/upload/"+this.store.licenseImg
     },

@@ -26,11 +26,14 @@ export default {
       this.setStores({
         name: this.select,
         value: this.input,
+        id:this.ownerId
       });
     },
     ...mapActions(["setStores"])
   },
-  computed: {},
+  computed: {
+    ...mapState(["ownerId"])
+  },
   components: {}
 };
 </script>

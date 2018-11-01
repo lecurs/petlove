@@ -33,6 +33,7 @@ export default {
       if (!res.data.user) {
         this.$router.push("/login");
       } else {
+        // console.log(res.data._id,7788);
         this.setOwnerId(res.data._id);
         this.setSession(res.data);
       }
@@ -40,11 +41,7 @@ export default {
   },
   methods: {
     ...mapMutations(["setSession"]),
-    ...mapActions(["setStores","setOwnerId"])
-  },
-  created() {
-    console.log(this.ownerId,1231212)
-    this.setStores();
+    ...mapActions(["setStores","setOwnerId","setStoresOfOwner"])
   },
   computed: {
     ...mapState(["ownerId","session"])

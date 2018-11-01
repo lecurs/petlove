@@ -126,11 +126,13 @@ export default {
       return isJPG && isLt2M;
     },
     addStore: function() {
+      console.log(this.ownerId,23232323232323)
       axios({
         url: "/zhaoqinglong/addStore",
         method: "post",
         data: {
           name: this.name,
+          owner:this.ownerId,
           licenseCode: this.licenseCode,
           address: this.address,
           location: this.location,
@@ -150,7 +152,8 @@ export default {
         }
       }).then(res => {
         // console.log(res.data._id, 5566);
-        let ownerId = "5bd2df1626178522cd53fe9c";
+        // let ownerId = "5bd2df1626178522cd53fe9c";
+        let ownerId = this.ownerId;
         let storeId = res.data._id;
         this.setOwners({ ownerId: ownerId, storeId: storeId });
         let time = new Date();
@@ -191,13 +194,16 @@ export default {
         }).then(res=>{
           console.log('suc');
         });
-        this.setStores();
+        // this.setStores();
+        this.setStoresOfOwner(this.ownerId)
         this.dialogFormVisible = false;
       });
     },
-    ...mapActions(["setStores", "setOwners"])
+    ...mapActions(["setStores", "setOwners","setStoresOfOwner"])
   },
-  computed: {},
+  computed: {
+    ...mapState(["ownerId"])
+  },
   components: {}
 };
 </script>

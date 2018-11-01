@@ -9,8 +9,11 @@ const state = {
     storesOfOwner:[]
 }
 const mutations = {
-    setStores(state, stores) {
-        state.stores = stores;
+    setStores(state, storesOfOwner) {
+        state.storesOfOwner = storesOfOwner;
+    },
+    setStoresOfOwner(state, storesOfOwner) {
+        state.storesOfOwner = storesOfOwner;
     },
     setStore(state, store) {
         state.store = store;
@@ -44,6 +47,14 @@ const actions = {
             commit("setStore", response.data);
         });
     },
+    setStoresOfOwner({commit,dispatch},id){
+        axios({
+            url:"/zhaoqinglong/ownerstore/"+id,
+            method:"get",
+        }).then(response =>{
+            commit("setStoresOfOwner", response.data);
+        })
+    },
     setoldStore({
         commit
     }, id) {
@@ -59,9 +70,11 @@ const actions = {
         commit,
         dispatch
     }, payload = {}) {
-        // console.log(payload,12312312312132)
+
+        console.log(payload.id,12312312312132)
+        let id =payload.id;
         axios({
-            url: '/zhaoqinglong/all',
+            url: '/zhaoqinglong/all/'+id,
             method: 'get',
             params: {
                 name: payload.name || '',
@@ -107,7 +120,8 @@ const actions = {
         }).then((res)=>{
             console.log('wang',res.data);   
             commit('setOwnerId',res.data);
-            dispatch('showStores',res.data);
+            dispatch('setStoresOfOwner',res.data)
+            // dispatch('showStores',res.data);
             // console.log(this.state.XiongPlus)
         })
     },
