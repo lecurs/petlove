@@ -19,6 +19,7 @@ import Login from "./components/login/index.vue"
 import Manageuser from "./components/manageuser/index.vue"
 // import Stores from "./components/stores";
 import Stores from "./components/stores/index";
+import GoodsAdd from "./components/goodsAdd/goodsAdd.vue"
 // import Manageuser from "./components/manageuser/index";
 
 import Reg from './components/reg/index.vue'
@@ -59,6 +60,10 @@ export default new Router({
           },{
             path: 'manageuser',
             component: Manageuser
+          },
+          {
+            path: 'goodsAdd',
+            component: GoodsAdd
           }
         ]
       },

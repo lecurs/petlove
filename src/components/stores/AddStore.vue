@@ -99,7 +99,10 @@ export default {
         name: "",
         rank: "",
         phone: ""
-      }
+      },
+      goods: [],
+      services: [],
+      orders: []
     };
   },
   methods: {
@@ -126,13 +129,13 @@ export default {
       return isJPG && isLt2M;
     },
     addStore: function() {
-      console.log(this.ownerId,23232323232323)
+      console.log(this.ownerId, 23232323232323);
       axios({
         url: "/zhaoqinglong/addStore",
         method: "post",
         data: {
           name: this.name,
-          owner:this.ownerId,
+          owner: this.ownerId,
           licenseCode: this.licenseCode,
           address: this.address,
           location: this.location,
@@ -148,7 +151,10 @@ export default {
             name: this.staffs.name,
             rank: this.staffs.rank,
             phone: this.staffs.phone
-          }
+          },
+          goods: [],
+          services: [],
+          orders: []
         }
       }).then(res => {
         // console.log(res.data._id, 5566);
@@ -188,18 +194,18 @@ export default {
                 }
               }
             },
-            passed:"0",
-            handle:"0"
+            passed: "0",
+            handle: "0"
           }
-        }).then(res=>{
-          console.log('suc');
+        }).then(res => {
+          console.log("suc");
         });
         // this.setStores();
-        this.setStoresOfOwner(this.ownerId)
+        this.setStoresOfOwner(this.ownerId);
         this.dialogFormVisible = false;
       });
     },
-    ...mapActions(["setStores", "setOwners","setStoresOfOwner"])
+    ...mapActions(["setStores", "setOwners", "setStoresOfOwner"])
   },
   computed: {
     ...mapState(["ownerId"])

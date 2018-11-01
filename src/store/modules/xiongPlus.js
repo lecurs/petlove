@@ -101,6 +101,7 @@ const actions = {
             method: 'get',
             url: '/xiongwei/getMyGoods/' + id
         }).then((response) => {
+            console.log("ciong",response.data)
             commit('getMyGoods', response.data)
         });
     },
