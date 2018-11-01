@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import Login from "./components/login/index.vue"
+// import System from "./components/system/index.vue"
+// import Stores from "./components/stores"
+
 import SellerManage from "./components/sellerManage/index.vue"
 import MyStores from "./components/myStores/index.vue"
 import ManageCenter from "./components/manageCenter/index.vue"
@@ -12,10 +16,12 @@ import PetMaster from "./components/petMaster";
 import Supplier from "./components/supplier";
 import Storemanage from './components/storeManage';
 import Login from "./components/login/index.vue"
-import Orders from "./components/orders"
+// import Stores from "./components/stores";
+import Stores  from "./components/stores/index";
 
 import Reg from './components/reg/index.vue'
 import Welcome from './components/sellerManage/Welcome.vue'
+import { Store } from 'vuex';
 Vue.use(Router)
 
 export default new Router({
@@ -37,7 +43,11 @@ export default new Router({
         },
         {
           path: 'manageCenter',
-          component: ManageCenter
+          component: ManageCenter,
+          children:[
+            {path:'stores',
+            component:Stores}
+          ]
         },
         {
           path: 'welcome',

@@ -1,8 +1,5 @@
 <template>
-    <div>
-        <h3>管理中心</h3>
-        <p>aaaaaaaaaaa</p>
-    </div>
+   <router-view></router-view>  
 </template>
 
 <script>

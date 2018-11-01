@@ -11,6 +11,7 @@ import StoreManage from "./modules/storeManage";
 import orders from './modules/orders'
 import XiongPlus from './modules/xiongPlus';
 import goodsAdd from './modules/goodsAdd'
+import stores from "./modules/stores";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -24,7 +25,9 @@ export default new Vuex.Store({
     StoreManage,
     orders,
     XiongPlus,
-    goodsAdd
+    goodsAdd,
+
+    stores
   },
   state: {
     session: {},

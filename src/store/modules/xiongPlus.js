@@ -66,7 +66,7 @@ const actions = {
         }).then((res)=>{
             commit('setOwnerId',res.data);
             dispatch('showStores',res.data);
-            console.log(this.state.XiongPlus)
+            // console.log(this.state.XiongPlus)
         })
     },
     getStoreById({ commit }, id) {
