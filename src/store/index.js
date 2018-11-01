@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import storeuser from "./modules/storeuser"
 import axios from "axios"
 import AdminAccount from "./modules/adminAccount";
 import UsersAccount from "./modules/usersAccount";
@@ -16,6 +17,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
+    storeuser,
     AdminAccount,
     UsersAccount,
     UserAudit,
@@ -30,17 +32,27 @@ export default new Vuex.Store({
     stores
   },
   state: {
+    // count: 0,
+    // price: 100,
+    // user: {}
     session: {},
+
   },
   mutations: {
+
     setSession(state, session) {
       state.session = session;
     }
+
   },
   getters: {
+
 
   },
   actions: {
 
+
+
   }
+
 });

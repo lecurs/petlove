@@ -37,7 +37,7 @@
                 <i class="iconfont pl-weibiaoti-- menuIcon"></i>
                 <span slot="title" class="menuText">管理中心</span>
             </template>
-            <el-menu-item index="/sellerManage/manageCenter">个人信息</el-menu-item>
+            <el-menu-item index="/sellerManage/manageCenter/manageuser">个人信息</el-menu-item>
             <el-menu-item index="/sellerManage/manageCenter/stores">门店管理</el-menu-item>
         </el-submenu>
     </el-menu>

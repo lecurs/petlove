@@ -16,8 +16,10 @@ import PetMaster from "./components/petMaster";
 import Supplier from "./components/supplier";
 import Storemanage from './components/storeManage';
 import Login from "./components/login/index.vue"
+import Manageuser from "./components/manageuser/index.vue"
 // import Stores from "./components/stores";
-import Stores  from "./components/stores/index";
+import Stores from "./components/stores/index";
+// import Manageuser from "./components/manageuser/index";
 
 import Reg from './components/reg/index.vue'
 import Welcome from './components/sellerManage/Welcome.vue'
@@ -28,84 +30,95 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [{
-      path: '/',
-      name: 'login',
-      component: Login
+    path: '/',
+    name: 'login',
+    component: Login
+  },
+  // {
+  //   path: '/manageuser',
+  //   name: 'manageuser',
+  //   component: Manageuser
+  // },
+
+  {
+    path: '/sellerManage',
+    name: 'sellerManage',
+    component: SellerManage,
+    children: [
+      {
+        path: 'myStores',
+        component: MyStores
+      },
+      {
+        path: 'manageCenter',
+        component: ManageCenter,
+        children: [
+          {
+            path: 'stores',
+            component: Stores
+          },{
+            path: 'manageuser',
+            component: Manageuser
+          }
+        ]
+      },
+      {
+        path: 'welcome',
+        component: Welcome
+      }
+    ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/reg',
+    name: 'reg',
+    component: Reg
+  },
+  {
+    path: '/adminmaster',
+    name: 'adminmaster',
+    component: Adminmaster,
+    children: [{
+      path: 'adminaccount',
+      name: 'adminaccount',
+      component: AdminAccount,
     },
     {
-      path: '/sellerManage',
-      name: 'sellerManage',
-      component: SellerManage,
-      children: [
-        {
-          path: 'myStores',
-          component: MyStores
-        },
-        {
-          path: 'manageCenter',
-          component: ManageCenter,
-          children:[
-            {path:'stores',
-            component:Stores}
-          ]
-        },
-        {
-          path: 'welcome',
-          component: Welcome
-        }
-      ]
+      path: 'userAccount',
+      name: 'userAccount',
+      component: UserAccount,
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login
+      path: 'userAudit',
+      name: 'userAudit',
+      component: UserAudit,
     },
     {
-      path: '/reg',
-      name: 'reg',
-      component: Reg
+      path: 'storeAudit',
+      name: 'storeAudit',
+      component: StoreAudit,
     },
     {
-      path: '/adminmaster',
-      name: 'adminmaster',
-      component: Adminmaster,
-      children: [{
-          path: 'adminaccount',
-          name: 'adminaccount',
-          component: AdminAccount,
-        },
-        {
-          path: 'userAccount',
-          name: 'userAccount',
-          component: UserAccount,
-        },
-        {
-          path: 'userAudit',
-          name: 'userAudit',
-          component: UserAudit,
-        },
-        {
-          path: 'storeAudit',
-          name: 'storeAudit',
-          component: StoreAudit,
-        },
-        {
-          path: 'petMaster',
-          name: 'petMaster',
-          component: PetMaster,
-        },
-        {
-          path: 'supplier',
-          name: 'supplier',
-          component: Supplier,
-        },
-        {
-          path: 'storemanage',
-          name: 'storemanage',
-          component: Storemanage,
-        }
-      ]
+      path: 'petMaster',
+      name: 'petMaster',
+      component: PetMaster,
+    },
+    {
+      path: 'supplier',
+      name: 'supplier',
+      component: Supplier,
+    },
+    {
+      path: 'storemanage',
+      name: 'storemanage',
+      component: Storemanage,
     }
+    ]
+  }
 
   ]
 })
