@@ -9,7 +9,8 @@ import PetMaster from "./modules/petMaster";
 import Supplier from "./modules/supplier";
 import StoreManage from "./modules/storeManage";
 import orders from './modules/orders'
-import XiongPlus from './modules/xiongPlus'
+import XiongPlus from './modules/xiongPlus';
+import goodsAdd from './modules/goodsAdd'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -22,7 +23,8 @@ export default new Vuex.Store({
     Supplier,
     StoreManage,
     orders,
-    XiongPlus
+    XiongPlus,
+    goodsAdd
   },
   state: {
     session: {},

@@ -17,23 +17,12 @@
                 
             </el-radio-group>
             </el-form-item>
-            <!-- <el-form-item label="订单分类" :label-width="formLabelWidth">
-             <el-input v-model="store.type" autocomplete="off"></el-input>
-             <el-input v-model="store.goodstype" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="店铺地址" :label-width="formLabelWidth">
-             <el-input v-model="store.adress" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="商品描述" :label-width="formLabelWidth">
-             <el-input v-model="store.context" autocomplete="off"></el-input>
-            </el-form-item> -->
+            
             <el-form-item label="商品价格" :label-width="formLabelWidth">
              <el-input v-model="order.price" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="收货人" :label-width="formLabelWidth">
-            <!-- <el-input autocomplete="off">{{this.store.consignee}}</el-input> -->
-             <!-- <el-input autocomplete="off">{{this.store.consignphone}}</el-input> -->
-             <!-- <el-input autocomplete="off">{{this.store.consignadr}}</el-input> -->
+           
              <el-input v-model="order.consignee" autocomplete="off"></el-input>
              <el-input v-model="order.consignphone" autocomplete="off"></el-input>
              <el-input v-model="order.consignadr" autocomplete="off"></el-input>
