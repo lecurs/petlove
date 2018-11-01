@@ -17,6 +17,7 @@ export default {
       updateVisible: false
     };
   },
+  
   created() {
     this.setStudents()
   },

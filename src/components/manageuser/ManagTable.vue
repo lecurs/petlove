@@ -62,6 +62,7 @@ export default {
     update(id){
         this.$emit("update:updateVisible",true)
         this.setStudent(id);
+        this.setoldmsg(id);
     },
     // remove(id){
     //     axios({
@@ -71,7 +72,7 @@ export default {
     //         this.setStudents({page:this.pagination.curpage});
     //     })
     // },
-    ...mapActions(["setStudents","setStudent"])
+    ...mapActions(["setStudents","setStudent","setoldmsg"])
   },
   computed:{
   ...mapState(['students'])

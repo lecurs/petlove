@@ -28,7 +28,7 @@
 <script>
 import axios from "axios";
 // import { mapState, mapActions } from "vuex";
-import { createNamespacedHelpers} from "vuex";
+import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("storeuser");
 
 export default {
@@ -50,60 +50,65 @@ export default {
     },
 
     updateConfirm(id) {
-      //    console.log(id,5555);
+      console.log(id, 5555);
+      // axios({
+      //   url: "/liufei/" + id,
+      //   method: "put",
+      //   data: {
+      //     user: this.student.user,
+      //     phone: this.student.phone,
+      //     pwd: this.student.pwd,
+      //     // role: this.student.role,
+      //     // privilege: this.student.privilege,
+      //     passed:"0"
+      //   }
+      // }).then(response => {
+      // let id = response.data._id;
+      let time = new Date();
+      let year = time.getFullYear();
+      let mouth = time.getMonth() + 1;
+      let day = time.getDate();
+      time = year + "-" + mouth + "-" + day;
       axios({
-        url: "/liufei/" + id,
-        method: "put",
+        url: "/liufei",
+        method: "post",
         data: {
-          user: this.student.user,
-          phone: this.student.phone,
-          pwd: this.student.pwd,
-          role: this.student.role,
-          privilege: this.student.privilege,
-          passed:"0"
-        }
-      }).then(response => {
-        let id = response.data._id;
-        let time = new Date();
-        let year = time.getFullYear();
-        let mouth = time.getMonth()+1;
-        let day = time.getDate();
-        time = year + "-" + mouth + "-" + day;
-        axios({
-          url: "/liufei",
-          method: "post",
-          data: {
-            source: "users",
-            time: time,
-            content: {
-              workId: id,
-              type: "put",
-              message: {
+          source: "account",
+          time: time,
+          content: {
+            workId: id,
+            type: "update",
+            message: {
+              oldMsg: {
+                user: this.oldmsg.user,
+                phone: this.oldmsg.phone,
+                pwd: this.oldmsg.pwd
+              },
+
+              newMsg: {
                 user: this.student.user,
                 phone: this.student.phone,
-                pwd: this.student.pwd,
-                role: this.student.role,
-                privilege: this.student.privilege
+                pwd: this.student.pwd
               }
-            },
-            passed: "0",
-            handle: "0"
-          }
-        }).then(response => {
-          console.log("suc");
-        });
-        this.$emit("update:updateVisible", false);
-        this.setStudents({ page: this.pagination.curpage });
+            }
+          },
+          passed: "0",
+          handle: "0"
+        }
+      }).then(response => {
+        console.log("suc");
       });
+      this.$emit("update:updateVisible", false);
+      this.setStudents({ page: this.pagination.curpage });
+      // });
     },
     ...mapActions(["setStudents"])
   },
   computed: {
-    ...mapState(["student", "pagination"])
+    ...mapState(["student", "oldmsg", "pagination"])
   },
   components: {}
 };
 </script>
 <style scoped>
-
 </style>
