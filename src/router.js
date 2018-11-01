@@ -19,6 +19,7 @@ import Login from "./components/login/index.vue"
 import Manageuser from "./components/manageuser/index.vue"
 // import Stores from "./components/stores";
 import Stores from "./components/stores/index";
+// import Manageuser from "./components/manageuser/index";
 
 import Reg from './components/reg/index.vue'
 import Welcome from './components/sellerManage/Welcome.vue'
@@ -30,14 +31,14 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [{
     path: '/',
-    name: 'manageuser',
-    component: Manageuser
+    name: 'login',
+    component: Login
   },
-  {
-    path: '/manageuser',
-    name: 'manageuser',
-    component: Manageuser
-  },
+  // {
+  //   path: '/manageuser',
+  //   name: 'manageuser',
+  //   component: Manageuser
+  // },
 
   {
     path: '/sellerManage',
@@ -55,6 +56,9 @@ export default new Router({
           {
             path: 'stores',
             component: Stores
+          },{
+            path: 'manageuser',
+            component: Manageuser
           }
         ]
       },
