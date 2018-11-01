@@ -58,9 +58,7 @@ export default {
       this.setStudents();
   },
   methods: {
-    // handleClick(row) {
-    //   console.log(row);
-    // }
+
     update(id){
         this.$emit("update:updateVisible",true)
         this.setStudent(id);

@@ -27,6 +27,7 @@ export default {
   components: {
     ManagTable,
     UpdateUsers,
+
   }
 };
 </script>
