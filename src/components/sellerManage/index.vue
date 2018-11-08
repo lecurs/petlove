@@ -40,6 +40,7 @@
             <el-menu-item index="/sellerManage/manageCenter/manageuser">个人信息</el-menu-item>
             <el-menu-item index="/sellerManage/manageCenter/stores">门店管理</el-menu-item>
             <el-menu-item index="/sellerManage/manageCenter/goodsAdd">商品管理</el-menu-item>
+            <el-menu-item index="/sellerManage/manageCenter/servicesAdd">服务管理</el-menu-item>
         </el-submenu>
     </el-menu>
     </el-aside>

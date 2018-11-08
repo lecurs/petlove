@@ -12,6 +12,7 @@ import StoreManage from "./modules/storeManage";
 import orders from './modules/orders'
 import XiongPlus from './modules/xiongPlus';
 import goodsAdd from './modules/goodsAdd'
+import servicesAdd from './modules/servicesAdd'
 import stores from "./modules/stores";
 Vue.use(Vuex)
 
@@ -28,7 +29,7 @@ export default new Vuex.Store({
     orders,
     XiongPlus,
     goodsAdd,
-
+    servicesAdd,
     stores
   },
   state: {
